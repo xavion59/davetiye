@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div className="absolute bottom-32 right-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s', borderRadius: '60% 40% 50% 50%/50% 60% 40% 50%' }} />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-20">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-28 sm:-mt-20">
         {/* Names */}
         <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white mb-1 drop-shadow-2xl animate-float-slow" style={{ transform: 'translateX(-15px)' }}>
           Hazal
@@ -37,7 +37,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Message */}
-        <p className="font-[family-name:var(--font-dancing)] text-xl sm:text-2xl text-white/85 mt-10 mb-10 max-w-md leading-relaxed drop-shadow-md">
+        <p className="text-xl sm:text-2xl text-gold mt-10 mb-10 max-w-md leading-relaxed drop-shadow-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
           Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
         </p>
 
