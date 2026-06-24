@@ -5,7 +5,6 @@ export default function DetailsSection() {
       <div className="absolute bottom-10 left-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '3s' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">
-        {/* Section header */}
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="flex items-center gap-3">
@@ -17,7 +16,7 @@ export default function DetailsSection() {
             </div>
           </div>
           <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4 reveal">
-            Nikah Detayları
+            Düğün Detayları
           </h2>
           <p className="text-text-light text-sm tracking-widest uppercase reveal delay-1">
             Sizi mutlu günümüzde aramızda görmek istiyoruz
