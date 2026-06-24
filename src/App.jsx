@@ -8,8 +8,11 @@ import Footer from './components/Footer'
 import SectionDivider from './components/SectionDivider'
 import FallingLeaves from './components/FallingLeaves'
 import AdminDashboard from './components/AdminDashboard'
+import useScrollReveal from './hooks/useScrollReveal'
 
 function InvitationPage() {
+  useScrollReveal()
+
   return (
     <div className="min-h-screen">
       <FallingLeaves />
