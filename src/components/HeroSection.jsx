@@ -4,7 +4,7 @@ import ScrollIndicator from './ScrollIndicator'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-start pt-24 sm:pt-20 pb-28">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-start pt-32 sm:pt-28 pb-28">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
@@ -33,11 +33,11 @@ export default function HeroSection() {
           Oğuz
         </h1>
 
-        <p className="text-xl sm:text-2xl text-gold mt-12 mb-6 max-w-md leading-relaxed drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+        <p className="text-xl sm:text-2xl text-gold mt-16 mb-8 max-w-md leading-relaxed drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
         </p>
 
-        <p className="text-white/80 text-base sm:text-lg tracking-[0.2em] mb-8 font-light">
+        <p className="text-white/80 text-base sm:text-lg tracking-[0.2em] mb-10 font-light">
           05 / 09 / 2026
         </p>
 
