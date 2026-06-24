@@ -12,7 +12,6 @@ export default function PhotoUpload() {
   const handleFileChange = (e) => {
     const selected = e.target.files?.[0]
     if (!selected) return
-
     const validTypes = ['image/png', 'image/jpeg', 'image/jpg']
     if (!validTypes.includes(selected.type)) {
       setMessage({ text: 'Sadece PNG, JPG formatları desteklenir.', type: 'error' })
@@ -22,7 +21,6 @@ export default function PhotoUpload() {
       setMessage({ text: 'Dosya boyutu 5MB\'dan küçük olmalı.', type: 'error' })
       return
     }
-
     setFile(selected)
     setPreview(URL.createObjectURL(selected))
     setMessage({ text: 'Fotoğraf seçildi!', type: 'success' })
@@ -51,26 +49,15 @@ export default function PhotoUpload() {
       setMessage({ text: 'Lütfen bir fotoğraf seçin.', type: 'error' })
       return
     }
-
     setUploading(true)
     setMessage({ text: '', type: '' })
-
     try {
       const fileExt = file.name.split('.').pop()
       const fileName = `${Date.now()}_${name.replace(/\s+/g, '_')}.${fileExt}`
-
-      const { error: uploadError } = await supabase.storage
-        .from('guest-photos')
-        .upload(fileName, file)
-
+      const { error: uploadError } = await supabase.storage.from('guest-photos').upload(fileName, file)
       if (uploadError) throw uploadError
-
-      const { error: dbError } = await supabase
-        .from('uploads')
-        .insert([{ uploader_name: name, photo_url: fileName }])
-
+      const { error: dbError } = await supabase.from('uploads').insert([{ uploader_name: name, photo_url: fileName }])
       if (dbError) throw dbError
-
       setMessage({ text: 'Fotoğrafınız başarıyla yüklendi! Teşekkürler.', type: 'success' })
       setName('')
       setFile(null)
@@ -84,26 +71,28 @@ export default function PhotoUpload() {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-cream">
-      <div className="max-w-2xl mx-auto">
+    <section className="py-24 px-4 sm:px-6 bg-cream relative overflow-hidden">
+      <div className="absolute bottom-10 right-0 w-56 h-56 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s', borderRadius: '40% 60% 50% 50%/60% 40% 50% 50%' }} />
+
+      <div className="max-w-2xl mx-auto relative z-10">
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-3">
             <div className="w-12 h-px bg-gold" />
-            <svg className="w-6 h-6 text-gold" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-6 h-6 text-gold animate-sway-reverse" viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
             </svg>
             <div className="w-12 h-px bg-gold" />
           </div>
         </div>
 
-        <h2 className="text-center font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary mb-2">
+        <h2 className="text-center font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-3 animate-fade-in-up">
           Anılarınızı Paylaşın
         </h2>
-        <p className="text-center text-text-light mb-12 text-sm">
+        <p className="text-center text-text-light mb-14 text-sm animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           Düğünümüzden kareleri bizimle paylaşabilirsiniz
         </p>
 
-        <div className="bg-white rounded-2xl border border-border shadow-lg p-8">
+        <div className="bg-white rounded-3xl border border-border shadow-2xl p-8 animate-fade-in-scale">
           <div className="mb-6">
             <label className="block text-sm font-medium text-text mb-2">Adınız Soyadınız</label>
             <input
@@ -111,12 +100,12 @@ export default function PhotoUpload() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Adınız Soyadınız"
-              className="w-full p-3 rounded-xl border border-border bg-cream/50 text-text placeholder-text-light/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+              className="w-full p-4 rounded-2xl border border-border bg-cream/50 text-text placeholder-text-light/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
             />
           </div>
 
           <div
-            className={`mb-6 border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ${
+            className={`mb-6 border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all duration-300 ${
               preview
                 ? 'border-primary bg-primary/5'
                 : 'border-border hover:border-primary/50 hover:bg-cream/50'
@@ -125,22 +114,15 @@ export default function PhotoUpload() {
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
           >
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".png,.jpg,.jpeg"
-              onChange={handleFileChange}
-              className="hidden"
-            />
-
+            <input ref={fileInputRef} type="file" accept=".png,.jpg,.jpeg" onChange={handleFileChange} className="hidden" />
             {preview ? (
               <div className="space-y-3">
-                <img src={preview} alt="Önizleme" className="max-h-48 mx-auto rounded-lg shadow-md" />
+                <img src={preview} alt="Önizleme" className="max-h-48 mx-auto rounded-xl shadow-lg" />
                 <p className="text-sm text-primary font-medium">Fotoğraf seçildi! Değiştirmek için tekrar tıklayın.</p>
               </div>
             ) : (
               <div className="space-y-3">
-                <svg className="w-12 h-12 mx-auto text-text-light/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-14 h-14 mx-auto text-text-light/30 animate-float-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <p className="text-text-light">Fotoğraf yüklemek için tıklayın veya sürükleyin</p>
@@ -150,8 +132,8 @@ export default function PhotoUpload() {
           </div>
 
           {message.text && (
-            <div className={`mb-4 p-3 rounded-lg text-sm ${
-              message.type === 'success' ? 'bg-primary/10 text-primary' : 'bg-red-50 text-red-600'
+            <div className={`mb-4 p-4 rounded-2xl text-sm ${
+              message.type === 'success' ? 'bg-primary/10 text-primary border border-primary/20' : 'bg-red-50 text-red-600 border border-red-200'
             }`}>
               {message.text}
             </div>
@@ -160,7 +142,7 @@ export default function PhotoUpload() {
           <button
             onClick={handleSubmit}
             disabled={uploading}
-            className="w-full gradient-btn text-white py-3 px-6 rounded-xl font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full gradient-btn text-white py-4 px-6 rounded-2xl font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />

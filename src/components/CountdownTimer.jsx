@@ -28,14 +28,14 @@ export default function CountdownTimer({ targetDate }) {
 
   return (
     <div className="flex gap-3 sm:gap-4 justify-center">
-      {units.map((unit) => (
-        <div key={unit.label} className="flex flex-col items-center">
-          <div className="glass rounded-xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-border shadow-lg">
-            <span className="text-2xl sm:text-3xl font-semibold text-primary font-[family-name:var(--font-inter)]">
+      {units.map((unit, i) => (
+        <div key={unit.label} className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: `${0.1 * i}s` }}>
+          <div className="glass rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-white/20 shadow-lg">
+            <span className="text-2xl sm:text-3xl font-bold text-white drop-shadow-md font-[family-name:var(--font-inter)]">
               {String(unit.value).padStart(2, '0')}
             </span>
           </div>
-          <span className="text-xs sm:text-sm mt-2 text-text-light font-medium">
+          <span className="text-xs sm:text-sm mt-2 text-white/70 font-medium tracking-wider">
             {unit.label}
           </span>
         </div>

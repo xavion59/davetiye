@@ -1,12 +1,13 @@
 export default function SectionDivider() {
   return (
-    <div className="flex justify-center py-2 bg-cream">
-      <svg className="w-48 h-8 text-gold/30" viewBox="0 0 200 30" fill="none">
-        <path d="M0 15 Q50 0 100 15 Q150 30 200 15" stroke="currentColor" strokeWidth="1" fill="none" />
-        <circle cx="100" cy="15" r="3" fill="currentColor" />
-        <circle cx="80" cy="12" r="1.5" fill="currentColor" />
-        <circle cx="120" cy="18" r="1.5" fill="currentColor" />
-      </svg>
+    <div className="relative py-4 bg-cream overflow-hidden">
+      <div className="flex justify-center items-center gap-4">
+        <div className="w-20 sm:w-32 h-px bg-gradient-to-r from-transparent to-gold/50" />
+        <svg className="w-5 h-5 text-gold/60 animate-sway-slow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+        <div className="w-20 sm:w-32 h-px bg-gradient-to-l from-transparent to-gold/50" />
+      </div>
     </div>
   )
 }
