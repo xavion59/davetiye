@@ -1,6 +1,6 @@
 export default function DetailsSection() {
   return (
-    <section id="details" className="py-28 sm:py-32 px-6 sm:px-8 bg-cream relative overflow-hidden">
+    <section id="details" className="py-32 sm:py-40 px-6 sm:px-8 bg-cream relative overflow-hidden">
       <div className="absolute top-10 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
       <div className="absolute bottom-10 left-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '3s' }} />
 

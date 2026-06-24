@@ -1,6 +1,6 @@
 export default function SectionDivider() {
   return (
-    <div className="relative py-4 bg-cream overflow-hidden">
+    <div className="relative py-10 bg-cream overflow-hidden">
       <div className="flex justify-center items-center gap-4">
         <div className="w-20 sm:w-32 h-px bg-gradient-to-r from-transparent to-gold/50" />
         <svg className="w-5 h-5 text-gold/60 animate-sway-slow" viewBox="0 0 24 24" fill="currentColor">
