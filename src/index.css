@@ -108,6 +108,21 @@ body {
   transform: scale(1.02);
 }
 
+/* Section decorative divider */
+.section-divider {
+  position: relative;
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-border), transparent);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

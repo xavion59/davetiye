@@ -8,7 +8,7 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="py-20 px-4 bg-cream-dark">
+    <section className="py-20 px-4 sm:px-6 bg-cream-dark">
       <div className="max-w-2xl mx-auto">
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-3">
@@ -27,21 +27,21 @@ export default function ContactSection() {
           Sorularınız için bize ulaşabilirsiniz
         </p>
 
-        <div className="grid gap-4">
+        <div className="flex justify-center">
           {contacts.map((contact) => (
             <a
               key={contact.name}
               href={contact.phoneLink}
-              className="glass rounded-2xl p-6 border border-border shadow-lg flex items-center gap-4 hover:scale-[1.02] transition-transform duration-300"
+              className="glass rounded-2xl p-8 border border-border shadow-lg flex items-center gap-5 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 w-full max-w-md"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-gold/10 flex items-center justify-center shrink-0">
+                <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-text">{contact.name}</h3>
-                <p className="text-text-light text-sm">{contact.phone}</p>
+                <h3 className="font-semibold text-text text-lg">{contact.name}</h3>
+                <p className="text-text-light">{contact.phone}</p>
               </div>
             </a>
           ))}

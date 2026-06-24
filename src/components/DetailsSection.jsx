@@ -1,6 +1,6 @@
 export default function DetailsSection() {
   return (
-    <section id="details" className="py-20 px-4 bg-cream">
+    <section id="details" className="py-20 px-4 sm:px-6 bg-cream">
       {/* Decorative top */}
       <div className="flex justify-center mb-8">
         <div className="flex items-center gap-3">
@@ -23,8 +23,8 @@ export default function DetailsSection() {
         {/* Date & Time card */}
         <div className="glass rounded-2xl p-8 border border-border shadow-lg mb-6 animate-scale-in hover:scale-[1.02] transition-transform duration-300">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-gold/10 flex items-center justify-center shrink-0">
+              <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
                 <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
                 <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
@@ -48,8 +48,8 @@ export default function DetailsSection() {
         {/* Venue card */}
         <div className="glass rounded-2xl p-8 border border-border shadow-lg mb-6 animate-scale-in hover:scale-[1.02] transition-transform duration-300" style={{ animationDelay: '0.2s' }}>
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-              <svg className="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold/15 to-primary/10 flex items-center justify-center shrink-0">
+              <svg className="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" strokeWidth="2" />
                 <circle cx="12" cy="10" r="3" strokeWidth="2" />
               </svg>
@@ -64,36 +64,31 @@ export default function DetailsSection() {
 
         {/* Google Maps */}
         <div className="animate-scale-in" style={{ animationDelay: '0.4s' }}>
+          <div className="rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <iframe
+              title="Mekan Konumu"
+              src="https://www.google.com/maps?q=G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Ke%C5%9Fan+Edirne+Turkey&output=embed"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              className="grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
           <a
-            href="https://www.google.com/maps/search/G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Yenimuhacir+Kesan+Edirne"
+            href="https://www.google.com/maps/search/G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Ke%C5%9Fan+Edirne"
             target="_blank"
             rel="noopener noreferrer"
-            className="block"
+            className="mt-4 block w-full gradient-btn text-white py-3 px-6 rounded-xl font-medium text-center"
           >
-            <div className="rounded-2xl overflow-hidden border border-border shadow-lg hover:scale-[1.02] transition-transform duration-300">
-              <iframe
-                title="Mekan Konumu"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d26.6!3d40.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDUxJzAwLjAiTiAyNsKwMzYnMDAuMCJF!5e0!3m2!1str!2str!4v1"
-                width="100%"
-                height="250"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                className="grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          </a>
-          <a
-            href="https://www.google.com/maps/search/G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Yenimuhacir+Kesan+Edirne"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 w-full gradient-btn text-white py-3 px-6 rounded-xl font-medium flex items-center justify-center gap-2"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Google Haritalar'da Aç
+            <span className="flex items-center justify-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Google Haritalar'da Aç
+            </span>
           </a>
         </div>
       </div>

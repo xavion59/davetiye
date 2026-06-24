@@ -84,7 +84,7 @@ export default function PhotoUpload() {
   }
 
   return (
-    <section className="py-20 px-4 bg-cream">
+    <section className="py-20 px-4 sm:px-6 bg-cream">
       <div className="max-w-2xl mx-auto">
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-3">
@@ -104,7 +104,6 @@ export default function PhotoUpload() {
         </p>
 
         <div className="bg-white rounded-2xl border border-border shadow-lg p-8">
-          {/* Name input */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-text mb-2">Adınız Soyadınız</label>
             <input
@@ -116,7 +115,6 @@ export default function PhotoUpload() {
             />
           </div>
 
-          {/* Drop zone */}
           <div
             className={`mb-6 border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ${
               preview
@@ -151,7 +149,6 @@ export default function PhotoUpload() {
             )}
           </div>
 
-          {/* Message */}
           {message.text && (
             <div className={`mb-4 p-3 rounded-lg text-sm ${
               message.type === 'success' ? 'bg-primary/10 text-primary' : 'bg-red-50 text-red-600'
@@ -160,7 +157,6 @@ export default function PhotoUpload() {
             </div>
           )}
 
-          {/* Submit */}
           <button
             onClick={handleSubmit}
             disabled={uploading}

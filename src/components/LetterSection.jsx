@@ -76,7 +76,7 @@ export default function LetterSection() {
   }
 
   return (
-    <section className="py-20 px-4 bg-cream-dark">
+    <section className="py-20 px-4 sm:px-6 bg-cream-dark">
       <div className="max-w-2xl mx-auto">
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-3">

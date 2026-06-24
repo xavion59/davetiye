@@ -5,15 +5,20 @@ import LetterSection from './components/LetterSection'
 import PhotoUpload from './components/PhotoUpload'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
+import SectionDivider from './components/SectionDivider'
 import AdminDashboard from './components/AdminDashboard'
 
 function InvitationPage() {
   return (
     <div className="min-h-screen">
       <HeroSection />
+      <SectionDivider />
       <DetailsSection />
+      <SectionDivider />
       <LetterSection />
+      <SectionDivider />
       <PhotoUpload />
+      <SectionDivider />
       <ContactSection />
       <Footer />
     </div>
