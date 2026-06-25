@@ -57,7 +57,7 @@ export default function DetailsPage() {
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
-              className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+              className="absolute inset-0 w-full h-full"
             />
           </div>
           <a
