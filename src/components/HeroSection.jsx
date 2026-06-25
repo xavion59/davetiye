@@ -18,24 +18,24 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl">
 
         {/* DAVETLİSİNİZ */}
-        <p className="text-gold text-lg sm:text-xl tracking-[0.3em] font-medium mb-8 uppercase"
+        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-10 uppercase"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Davetlisiniz
         </p>
 
-        {/* Names - diagonal layout */}
-        <div className="relative w-full max-w-md mb-10">
-          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-0 top-0">
+        {/* Names - diagonal layout, closer together */}
+        <div className="relative w-full max-w-sm mb-10">
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-2 top-0">
             Hazal
           </h1>
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <span className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-gold animate-pulse-heart drop-shadow-lg">&</span>
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <span className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-gold drop-shadow-lg">&</span>
           </div>
-          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-0 bottom-0">
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-2 bottom-0">
             Oğuz
           </h1>
           {/* Spacer for layout */}
-          <div className="w-full h-48 sm:h-56 md:h-64" />
+          <div className="w-full h-40 sm:h-48 md:h-56" />
         </div>
 
         {/* Message */}

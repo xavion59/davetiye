@@ -15,7 +15,7 @@ function InvitationPage() {
 
       <HeroSection />
 
-      <div className="fixed bottom-6 left-4 sm:left-8 z-50">
+      <div className="fixed bottom-6 left-4 sm:left-8 z-50" style={{ transform: 'none' }}>
         <MusicPlayer />
       </div>
 
