@@ -69,7 +69,7 @@ export default function HeroSection() {
         </Draggable>
 
         <Draggable id="message" positions={positions} setPositions={setPositions} editing={editing}>
-          <p className="text-lg sm:text-xl text-gold max-w-sm leading-relaxed drop-shadow-lg whitespace-nowrap"
+          <p className="text-xl sm:text-2xl md:text-3xl text-gold max-w-md leading-relaxed drop-shadow-lg text-center"
             style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
           </p>
