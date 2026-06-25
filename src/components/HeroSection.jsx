@@ -18,20 +18,20 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl">
 
         {/* DAVETLİSİNİZ */}
-        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-10 uppercase"
+        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-6 uppercase"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Davetlisiniz
         </p>
 
-        {/* Names - diagonal layout, closer together */}
-        <div className="relative w-full max-w-sm mb-10">
-          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-2 top-0">
+        {/* Names - diagonal layout */}
+        <div className="relative w-full max-w-sm mb-12">
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-2 top-0 animate-float-slow">
             Hazal
           </h1>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <span className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-gold drop-shadow-lg">&</span>
+            <span className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-gold drop-shadow-lg animate-pulse-heart">&</span>
           </div>
-          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-2 bottom-0">
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-2 bottom-0 animate-float-slow" style={{ animationDelay: '1s' }}>
             Oğuz
           </h1>
           {/* Spacer for layout */}
@@ -39,13 +39,13 @@ export default function HeroSection() {
         </div>
 
         {/* Message */}
-        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-8"
+        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-10"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
         </p>
 
         {/* Date */}
-        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-8">
+        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-10">
           05 / 09 / 2026
         </p>
 
