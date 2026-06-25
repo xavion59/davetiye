@@ -1,18 +1,5 @@
 import CountdownTimer from './CountdownTimer'
 
-const HERO = {
-  paddingTop: 120,
-  paddingTopSm: 100,
-  paddingBottom: 80,
-  namesSize: 'text-7xl sm:text-8xl md:text-9xl',
-  namesOffsetX: 15,
-  gapAfterNames: 50,
-  gapAfterMessage: 30,
-  gapAfterDate: 40,
-  messageSize: 'text-xl sm:text-2xl',
-  dateSize: 'text-base sm:text-lg',
-}
-
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
@@ -28,35 +15,39 @@ export default function HeroSection() {
       <div className="absolute bottom-32 right-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s', borderRadius: '60% 40% 50% 50%/50% 60% 40% 50%' }} />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <div style={{ marginBottom: `${HERO.gapAfterNames}px` }}>
-          <h1 className={`font-[family-name:var(--font-alex)] ${HERO.namesSize} text-white drop-shadow-2xl animate-float-slow`}
-            style={{ transform: `translateX(-${HERO.namesOffsetX}px)` }}>
+      <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl">
+
+        {/* DAVETLİSİNİZ */}
+        <p className="text-gold text-lg sm:text-xl tracking-[0.3em] font-medium mb-8 uppercase"
+          style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          Davetlisiniz
+        </p>
+
+        {/* Names - diagonal layout */}
+        <div className="relative w-full max-w-md mb-10">
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-0 top-0">
             Hazal
           </h1>
-          <div className="flex items-center gap-3 sm:gap-5 my-1">
-            <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-            <span className="font-[family-name:var(--font-alex)] text-3xl sm:text-4xl text-gold animate-pulse-heart drop-shadow-lg">&</span>
-            <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <span className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-gold animate-pulse-heart drop-shadow-lg">&</span>
           </div>
-          <h1 className={`font-[family-name:var(--font-alex)] ${HERO.namesSize} text-white drop-shadow-2xl animate-float-slow`}
-            style={{ animationDelay: '1s', transform: `translateX(${HERO.namesOffsetX}px)` }}>
+          <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-0 bottom-0">
             Oğuz
           </h1>
+          {/* Spacer for layout */}
+          <div className="w-full h-48 sm:h-56 md:h-64" />
         </div>
 
-        <div style={{ marginBottom: `${HERO.gapAfterMessage}px` }}>
-          <p className={`${HERO.messageSize} text-gold max-w-md leading-relaxed drop-shadow-lg`}
-            style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
-            Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
-          </p>
-        </div>
+        {/* Message */}
+        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-8"
+          style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
+        </p>
 
-        <div style={{ marginBottom: `${HERO.gapAfterDate}px` }}>
-          <p className={`${HERO.dateSize} text-white/80 tracking-[0.2em] font-light`}>
-            05 / 09 / 2026
-          </p>
-        </div>
+        {/* Date */}
+        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-8">
+          05 / 09 / 2026
+        </p>
 
         <CountdownTimer targetDate="2026-09-05T19:00:00" />
       </div>
