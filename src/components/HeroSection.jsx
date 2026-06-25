@@ -18,7 +18,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl">
 
         {/* DAVETLİSİNİZ */}
-        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-6 uppercase"
+        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-60 uppercase"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Davetlisiniz
         </p>
@@ -39,13 +39,13 @@ export default function HeroSection() {
         </div>
 
         {/* Message */}
-        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-10"
+        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-20"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
         </p>
 
         {/* Date */}
-        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-10">
+        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-20">
           05 / 09 / 2026
         </p>
 
