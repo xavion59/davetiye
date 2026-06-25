@@ -2,7 +2,7 @@ import CountdownTimer from './CountdownTimer'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center pt-24 sm:pt-28 pb-12">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
@@ -15,16 +15,16 @@ export default function HeroSection() {
       <div className="absolute bottom-32 right-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s', borderRadius: '60% 40% 50% 50%/50% 60% 40% 50%' }} />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-2xl flex-1 justify-between">
 
-        {/* DAVETLİSİNİZ */}
-        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold mb-60 uppercase"
+        {/* DAVETLİSİNİZ - top */}
+        <p className="text-gold text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] font-semibold uppercase"
           style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
           Davetlisiniz
         </p>
 
-        {/* Names - diagonal layout */}
-        <div className="relative w-full max-w-sm mb-12">
+        {/* Names - middle */}
+        <div className="relative w-full max-w-sm my-auto">
           <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute left-2 top-0 animate-float-slow">
             Hazal
           </h1>
@@ -34,22 +34,25 @@ export default function HeroSection() {
           <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl absolute right-2 bottom-0 animate-float-slow" style={{ animationDelay: '1s' }}>
             Oğuz
           </h1>
-          {/* Spacer for layout */}
           <div className="w-full h-40 sm:h-48 md:h-56" />
         </div>
 
-        {/* Message */}
-        <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg mb-20"
-          style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
-          Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
-        </p>
+        {/* Bottom section */}
+        <div className="flex flex-col items-center gap-6">
+          {/* Message */}
+          <p className="text-xl sm:text-2xl text-gold max-w-md leading-relaxed drop-shadow-lg"
+            style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+            Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
+          </p>
 
-        {/* Date */}
-        <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light mb-20">
-          05 / 09 / 2026
-        </p>
+          {/* Date */}
+          <p className="text-base sm:text-lg text-white/80 tracking-[0.2em] font-light">
+            05 / 09 / 2026
+          </p>
 
-        <CountdownTimer targetDate="2026-09-05T19:00:00" />
+          {/* Countdown */}
+          <CountdownTimer targetDate="2026-09-05T19:00:00" />
+        </div>
       </div>
     </section>
   )
