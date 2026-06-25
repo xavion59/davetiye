@@ -24,7 +24,7 @@ export default function MusicPlayer() {
   return (
     <button
       onClick={togglePlay}
-      className="fixed bottom-6 left-4 sm:left-8 z-[200] w-12 h-12 rounded-full bg-gray-800 border border-white/20 flex items-center justify-center shadow-lg"
+      className="w-12 h-12 rounded-full bg-gray-800 border border-white/20 flex items-center justify-center shadow-lg"
       aria-label={isPlaying ? 'Müziği Durdur' : 'Müziği Başlat'}
     >
       {isPlaying ? (

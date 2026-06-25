@@ -5,7 +5,6 @@ import LetterSection from './components/LetterSection'
 import PhotoUpload from './components/PhotoUpload'
 import ContactSection from './components/ContactSection'
 import FallingLeaves from './components/FallingLeaves'
-import MusicPlayer from './components/MusicPlayer'
 import AdminDashboard from './components/AdminDashboard'
 
 function InvitationPage() {
@@ -34,7 +33,6 @@ export default function App() {
         <Route path="/" element={<InvitationPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
-      <MusicPlayer />
     </Router>
   )
 }
