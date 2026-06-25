@@ -6,7 +6,7 @@ export default function DetailsPage() {
         Düğün Detayları
       </h2>
 
-      <div className="max-w-lg mx-auto flex flex-col gap-4">
+      <div className="max-w-xl mx-auto flex flex-col gap-4">
 
         {/* Date & Time */}
         <div className="rounded-2xl border-[4px] border-primary bg-white shadow-lg flex items-center gap-3 px-4 py-3">
