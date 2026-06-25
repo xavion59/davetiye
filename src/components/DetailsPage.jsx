@@ -1,6 +1,6 @@
 export default function DetailsPage() {
   return (
-    <section className="h-screen w-full flex flex-col px-5 sm:px-8 py-12 sm:py-14 bg-cream overflow-hidden">
+    <section className="h-screen w-full flex flex-col px-5 sm:px-8 py-16 sm:py-20 bg-cream overflow-hidden">
 
       {/* Title */}
       <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-6 shrink-0">
@@ -8,10 +8,10 @@ export default function DetailsPage() {
       </h2>
 
       {/* Content area */}
-      <div className="flex-1 flex flex-col gap-3 min-h-0">
+      <div className="flex-1 flex flex-col gap-4 min-h-0">
 
         {/* Date & Time */}
-        <div className="rounded-2xl border-[3px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
+        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0 shadow-md">
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
@@ -33,7 +33,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Venue */}
-        <div className="rounded-2xl border-[3px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
+        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shrink-0 shadow-md">
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" strokeWidth="2" />
@@ -47,7 +47,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Map + Button */}
-        <div className="flex-1 min-h-0 rounded-2xl border-[3px] border-primary bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col">
+        <div className="h-[45%] min-h-0 rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col">
           <div className="flex-1 min-h-0 relative">
             <iframe
               title="Mekan Konumu"
