@@ -91,9 +91,10 @@ function InvitationPage() {
         ))}
       </div>
 
+      {/* Right side arrows - vertically centered */}
       {page > 0 && (
         <button onClick={() => goTo(page - 1)}
-          className="fixed right-4 top-20 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
+          className="fixed right-4 top-1/2 -translate-y-[calc(50%+28px)] z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
           </svg>
@@ -101,7 +102,7 @@ function InvitationPage() {
       )}
       {page < 4 && (
         <button onClick={() => goTo(page + 1)}
-          className="fixed right-4 bottom-20 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
+          className="fixed right-4 top-1/2 -translate-y-[calc(50%-28px)] z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
