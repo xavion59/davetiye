@@ -1,21 +1,31 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import CountdownTimer from './CountdownTimer'
-import { Draggable, DEFAULT_POSITIONS, loadPositions, savePositions } from './Draggable'
+import { Draggable, DEFAULT_POSITIONS } from './Draggable'
+import { supabase } from '../lib/supabase'
 
 export default function HeroSection() {
   const [editing, setEditing] = useState(false)
-  const [positions, setPositions] = useState(loadPositions)
+  const [positions, setPositions] = useState(DEFAULT_POSITIONS)
+  const [loaded, setLoaded] = useState(false)
 
-  const handleSave = useCallback(() => {
-    savePositions(positions)
+  useEffect(() => {
+    async function load() {
+      const { data } = await supabase.from('hero_positions').select('positions').eq('id', 1).single()
+      if (data?.positions) setPositions(data.positions)
+      setLoaded(true)
+    }
+    load()
+  }, [])
+
+  const handleSave = useCallback(async () => {
+    await supabase.from('hero_positions').upsert({ id: 1, positions })
     setEditing(false)
-    window.location.reload()
   }, [positions])
 
-  const handleReset = useCallback(() => {
+  const handleReset = useCallback(async () => {
     setPositions(DEFAULT_POSITIONS)
-    savePositions(DEFAULT_POSITIONS)
-    window.location.reload()
+    await supabase.from('hero_positions').upsert({ id: 1, positions: DEFAULT_POSITIONS })
+    setEditing(false)
   }, [])
 
   return (
@@ -80,7 +90,7 @@ export default function HeroSection() {
       <div className="fixed top-4 right-4 z-[100] flex gap-2">
         {!editing ? (
           <button onClick={() => setEditing(true)}
-            className="w-11 h-11 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/50 transition-all border border-white/10"
+            className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/50 transition-colors"
             aria-label="Ayarlar">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -90,26 +100,20 @@ export default function HeroSection() {
         ) : (
           <>
             <button onClick={handleSave}
-              className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-all shadow-lg">
+              className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors shadow-lg">
               ✓ Kaydet
             </button>
             <button onClick={handleReset}
-              className="px-4 py-2 rounded-xl bg-red-500/80 text-white text-sm font-medium hover:bg-red-600 transition-all shadow-lg">
+              className="px-4 py-2 rounded-xl bg-red-500/80 text-white text-sm font-medium hover:bg-red-600 transition-colors shadow-lg">
               ↺ Sıfırla
             </button>
             <button onClick={() => setEditing(false)}
-              className="px-4 py-2 rounded-xl bg-black/40 backdrop-blur-sm text-white/80 text-sm font-medium hover:bg-black/60 transition-all border border-white/10">
+              className="px-4 py-2 rounded-xl bg-black/40 text-white/80 text-sm font-medium hover:bg-black/50 transition-colors">
               ✕ İptal
             </button>
           </>
         )}
       </div>
-
-      {editing && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-[100] px-4 py-2 rounded-xl bg-black/60 backdrop-blur-sm text-white/70 text-xs">
-          Elemanları sürükle, sonra Kaydet'e bas
-        </div>
-      )}
     </section>
   )
 }
