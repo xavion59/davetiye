@@ -1,6 +1,6 @@
 export default function DetailsPage() {
   return (
-    <section className="h-screen w-full flex items-center justify-center px-4 sm:px-6 bg-cream overflow-hidden">
+    <section className="h-screen w-full flex items-center justify-center px-4 sm:px-6 bg-cream overflow-y-auto">
       <div className="w-full max-w-lg mx-auto">
         {/* Green frame */}
         <div className="rounded-3xl border-2 border-primary/40 p-6 sm:p-8 bg-white/80 backdrop-blur-sm shadow-2xl">

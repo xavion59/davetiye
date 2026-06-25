@@ -4,7 +4,7 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="py-32 sm:py-40 px-6 sm:px-8 bg-cream-dark relative overflow-hidden">
+    <section className="h-full overflow-y-auto py-16 sm:py-20 px-6 sm:px-8 bg-cream-dark relative">
       <div className="absolute top-10 right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">
