@@ -9,7 +9,7 @@ export default function DetailsPage() {
       <div className="max-w-lg mx-auto flex flex-col gap-4">
 
         {/* Date & Time */}
-        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
+        <div className="rounded-2xl border-[4px] border-primary bg-white shadow-lg flex items-center gap-3 px-4 py-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0 shadow-md">
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
@@ -31,7 +31,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Venue */}
-        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
+        <div className="rounded-2xl border-[4px] border-primary bg-white shadow-lg flex items-center gap-3 px-4 py-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shrink-0 shadow-md">
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" strokeWidth="2" />
@@ -45,7 +45,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Map + Button */}
-        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col">
+        <div className="rounded-2xl border-[4px] border-primary bg-white shadow-lg overflow-hidden flex flex-col">
           <div className="h-64 relative">
             <iframe
               title="Mekan Konumu"
