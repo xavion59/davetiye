@@ -15,10 +15,6 @@ function InvitationPage() {
 
       <HeroSection />
 
-      <div className="fixed bottom-6 left-4 sm:left-8 z-50" style={{ transform: 'none' }}>
-        <MusicPlayer />
-      </div>
-
       <DetailsPage />
       <LetterSection />
       <PhotoUpload />
@@ -38,6 +34,7 @@ export default function App() {
         <Route path="/" element={<InvitationPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
+      <MusicPlayer />
     </Router>
   )
 }

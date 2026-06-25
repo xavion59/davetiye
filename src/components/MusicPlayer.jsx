@@ -24,9 +24,8 @@ export default function MusicPlayer() {
   return (
     <button
       onClick={togglePlay}
-      className="w-12 h-12 rounded-full bg-black/30 border border-white/20 flex items-center justify-center shadow-lg"
+      className="fixed bottom-6 left-4 sm:left-8 z-[200] w-12 h-12 rounded-full bg-black/30 border border-white/20 flex items-center justify-center shadow-lg"
       aria-label={isPlaying ? 'Müziği Durdur' : 'Müziği Başlat'}
-      style={{ transform: 'none', transition: 'none' }}
     >
       {isPlaying ? (
         <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
