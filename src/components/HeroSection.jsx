@@ -15,7 +15,7 @@ const HERO = {
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',

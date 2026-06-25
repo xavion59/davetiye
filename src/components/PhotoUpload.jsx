@@ -45,7 +45,7 @@ export default function PhotoUpload() {
   }
 
   return (
-    <section className="h-screen w-full overflow-y-auto py-20 px-6 sm:px-8 bg-cream relative">
+    <section className="w-full px-6 sm:px-8 py-16 sm:py-20 bg-cream relative">
       <div className="absolute bottom-10 right-0 w-56 h-56 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">

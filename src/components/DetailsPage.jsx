@@ -1,14 +1,12 @@
 export default function DetailsPage() {
   return (
-    <section className="h-screen w-full flex flex-col px-5 sm:px-8 py-16 sm:py-20 bg-cream overflow-hidden">
+    <section className="w-full px-5 sm:px-8 py-16 sm:py-20 bg-cream">
 
-      {/* Title */}
-      <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-6 shrink-0">
+      <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-8">
         Düğün Detayları
       </h2>
 
-      {/* Content area */}
-      <div className="flex-1 flex flex-col gap-4 min-h-0">
+      <div className="max-w-lg mx-auto flex flex-col gap-4">
 
         {/* Date & Time */}
         <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg flex items-center gap-3 px-4 py-3">
@@ -47,8 +45,8 @@ export default function DetailsPage() {
         </div>
 
         {/* Map + Button */}
-        <div className="h-[45%] min-h-0 rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col">
-          <div className="flex-1 min-h-0 relative">
+        <div className="rounded-2xl border-[4px] border-primary bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col">
+          <div className="h-64 relative">
             <iframe
               title="Mekan Konumu"
               src="https://www.google.com/maps?q=G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Ke%C5%9Fan+Edirne+Turkey&output=embed"
@@ -64,7 +62,7 @@ export default function DetailsPage() {
             href="https://www.google.com/maps/search/G%C3%B6zde+D%C3%BC%C4%9Fn+Salonu+Cumhuriyet+Ke%C5%9Fan+Edirne"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 gradient-btn text-white py-2.5 px-4 text-center font-semibold text-sm"
+            className="gradient-btn text-white py-3 px-4 text-center font-semibold text-sm"
           >
             <span className="flex items-center justify-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
