@@ -90,7 +90,7 @@ export default function HeroSection() {
       <div className="fixed top-4 right-4 z-[100] flex gap-2">
         {!editing ? (
           <button onClick={() => setEditing(true)}
-            className="w-11 h-11 rounded-full bg-black/40 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/50 transition-colors"
+            className="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-white/70 hover:text-white hover:bg-gray-700 transition-colors"
             aria-label="Ayarlar">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -108,7 +108,7 @@ export default function HeroSection() {
               ↺ Sıfırla
             </button>
             <button onClick={() => setEditing(false)}
-              className="px-4 py-2 rounded-xl bg-black/40 text-white/80 text-sm font-medium hover:bg-black/50 transition-colors">
+              className="px-4 py-2 rounded-xl bg-gray-800 text-white/80 text-sm font-medium hover:bg-gray-700 transition-colors">
               ✕ İptal
             </button>
           </>
