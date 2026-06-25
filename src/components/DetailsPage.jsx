@@ -1,9 +1,9 @@
 export default function DetailsPage() {
   return (
-    <section className="h-screen w-full flex items-center justify-center px-4 sm:px-6 bg-cream overflow-y-auto">
-      <div className="w-full max-w-lg mx-auto">
+    <section className="h-screen w-full flex items-center justify-center px-4 sm:px-6 bg-cream">
+      <div className="w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto py-8">
         {/* Green frame */}
-        <div className="rounded-3xl border-2 border-primary/40 p-6 sm:p-8 bg-white/80 backdrop-blur-sm shadow-2xl">
+        <div className="rounded-3xl border-2 border-primary p-6 sm:p-8 bg-white/80 backdrop-blur-sm shadow-2xl">
           {/* Title */}
           <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-6">
             Düğün Detayları

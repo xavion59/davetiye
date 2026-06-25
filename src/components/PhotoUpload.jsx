@@ -45,7 +45,7 @@ export default function PhotoUpload() {
   }
 
   return (
-    <section className="h-full overflow-y-auto py-16 sm:py-20 px-6 sm:px-8 bg-cream relative">
+    <section className="h-screen w-full overflow-y-auto py-20 px-6 sm:px-8 bg-cream relative">
       <div className="absolute bottom-10 right-0 w-56 h-56 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">
@@ -59,15 +59,15 @@ export default function PhotoUpload() {
               <div className="w-12 h-px bg-gold" />
             </div>
           </div>
-          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4 reveal">
+          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4">
             Anılarınızı Paylaşın
           </h2>
-          <p className="text-text-light text-sm reveal delay-1">
+          <p className="text-text-light text-sm">
             Düğünümüzden kareleri bizimle paylaşabilirsiniz
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-2xl p-8 sm:p-10 reveal-scale">
+        <div className="bg-white rounded-3xl border border-border shadow-2xl p-8 sm:p-10">
           <div className="mb-6">
             <label className="block text-sm font-medium text-text mb-2">Adınız Soyadınız</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Adınız Soyadınız"

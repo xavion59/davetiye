@@ -9,124 +9,99 @@ import FallingLeaves from './components/FallingLeaves'
 import MusicPlayer from './components/MusicPlayer'
 import AdminDashboard from './components/AdminDashboard'
 
-const PAGES = [
-  { id: 'hero', label: 'Ana Sayfa' },
-  { id: 'details', label: 'Detaylar' },
-  { id: 'letter', label: 'Mektup' },
-  { id: 'photo', label: 'Fotoğraf' },
-  { id: 'contact', label: 'İletişim' },
-]
+const PAGE_COUNT = 5
 
 function InvitationPage() {
-  const [currentPage, setCurrentPage] = useState(0)
-  const lastWheel = useRef(0)
+  const [page, setPage] = useState(0)
+  const pageRef = useRef(0)
+  const busy = useRef(false)
 
-  const goToPage = useCallback((page) => {
-    const now = Date.now()
-    if (now - lastWheel.current < 800) return
-    lastWheel.current = now
-    const clamped = Math.max(0, Math.min(page, PAGES.length - 1))
-    setCurrentPage(clamped)
+  const goTo = useCallback((target) => {
+    const next = Math.max(0, Math.min(target, PAGE_COUNT - 1))
+    if (next === pageRef.current || busy.current) return
+    busy.current = true
+    pageRef.current = next
+    setPage(next)
+    setTimeout(() => { busy.current = false }, 750)
   }, [])
 
   useEffect(() => {
-    const handleWheel = (e) => {
-      if (Math.abs(e.deltaY) < 20) return
-      if (e.deltaY > 0) goToPage(currentPage + 1)
-      else goToPage(currentPage - 1)
+    const onWheel = (e) => {
+      e.preventDefault()
+      if (e.deltaY > 15) goTo(pageRef.current + 1)
+      else if (e.deltaY < -15) goTo(pageRef.current - 1)
     }
-    window.addEventListener('wheel', handleWheel, { passive: true })
-    return () => window.removeEventListener('wheel', handleWheel)
-  }, [currentPage, goToPage])
+    window.addEventListener('wheel', onWheel, { passive: false })
+    return () => window.removeEventListener('wheel', onWheel)
+  }, [goTo])
 
   useEffect(() => {
-    let touchStart = 0
-    const handleStart = (e) => { touchStart = e.touches[0].clientY }
-    const handleEnd = (e) => {
-      const diff = touchStart - e.changedTouches[0].clientY
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) goToPage(currentPage + 1)
-        else goToPage(currentPage - 1)
-      }
+    let sy = 0
+    const onStart = (e) => { sy = e.touches[0].clientY }
+    const onEnd = (e) => {
+      const dy = sy - e.changedTouches[0].clientY
+      if (dy > 40) goTo(pageRef.current + 1)
+      else if (dy < -40) goTo(pageRef.current - 1)
     }
-    window.addEventListener('touchstart', handleStart, { passive: true })
-    window.addEventListener('touchend', handleEnd, { passive: true })
+    window.addEventListener('touchstart', onStart, { passive: true })
+    window.addEventListener('touchend', onEnd, { passive: true })
     return () => {
-      window.removeEventListener('touchstart', handleStart)
-      window.removeEventListener('touchend', handleEnd)
+      window.removeEventListener('touchstart', onStart)
+      window.removeEventListener('touchend', onEnd)
     }
-  }, [currentPage, goToPage])
+  }, [goTo])
 
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-        e.preventDefault()
-        goToPage(currentPage + 1)
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault()
-        goToPage(currentPage - 1)
+    const onKey = (e) => {
+      if (['ArrowDown', 'ArrowRight', ' ', 'PageDown'].includes(e.key)) {
+        e.preventDefault(); goTo(pageRef.current + 1)
+      } else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault(); goTo(pageRef.current - 1)
       }
     }
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  }, [currentPage, goToPage])
-
-  const pageComponents = [
-    <HeroSection />,
-    <DetailsPage />,
-    <LetterSection />,
-    <PhotoUpload />,
-    <ContactSection />,
-  ]
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [goTo])
 
   return (
-    <div className="h-screen overflow-hidden relative bg-cream"
-      onTouchStart={(e) => e.stopPropagation()}>
+    <div className="h-screen w-screen overflow-hidden relative bg-cream">
       <FallingLeaves />
 
-      {/* Pages container */}
-      <div className="h-full transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateY(-${currentPage * 100}vh)` }}>
-        {pageComponents.map((comp, i) => (
-          <div key={PAGES[i].id} className="h-screen">{comp}</div>
-        ))}
+      <div className="h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{ transform: `translateY(-${page * 100}vh)` }}>
+        <div className="h-screen w-screen"><HeroSection /></div>
+        <div className="h-screen w-screen"><DetailsPage /></div>
+        <div className="h-screen w-screen"><LetterSection /></div>
+        <div className="h-screen w-screen"><PhotoUpload /></div>
+        <div className="h-screen w-screen"><ContactSection /></div>
       </div>
 
-      {/* Music player - visible on hero page */}
-      {currentPage === 0 && (
+      {page === 0 && (
         <div className="absolute bottom-24 left-4 sm:left-8 z-50">
           <MusicPlayer />
         </div>
       )}
 
-      {/* Pagination dots */}
       <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex gap-2.5 bg-black/20 backdrop-blur-sm rounded-full px-4 py-2">
-        {PAGES.map((page, i) => (
-          <button
-            key={page.id}
-            onClick={() => setCurrentPage(i)}
-            className={`transition-all duration-400 rounded-full ${
-              i === currentPage
-                ? 'bg-white w-7 h-2.5 shadow-lg'
-                : 'bg-white/40 w-2.5 h-2.5 hover:bg-white/60'
-            }`}
-            title={page.label}
-          />
+        {[0,1,2,3,4].map((i) => (
+          <button key={i} onClick={() => goTo(i)}
+            className={`transition-all duration-300 rounded-full ${
+              i === page ? 'bg-white w-7 h-2.5 shadow-lg' : 'bg-white/40 w-2.5 h-2.5 hover:bg-white/60'
+            }`} />
         ))}
       </div>
 
-      {/* Navigation arrows */}
-      {currentPage > 0 && (
-        <button onClick={() => goToPage(currentPage - 1)}
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/30 transition-all">
+      {page > 0 && (
+        <button onClick={() => goTo(page - 1)}
+          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
           </svg>
         </button>
       )}
-      {currentPage < PAGES.length - 1 && (
-        <button onClick={() => goToPage(currentPage + 1)}
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-black/30 transition-all">
+      {page < 4 && (
+        <button onClick={() => goTo(page + 1)}
+          className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>

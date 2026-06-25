@@ -4,7 +4,7 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="h-full overflow-y-auto py-16 sm:py-20 px-6 sm:px-8 bg-cream-dark relative">
+    <section className="h-screen w-full overflow-y-auto py-20 px-6 sm:px-8 bg-cream-dark relative">
       <div className="absolute top-10 right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">
@@ -18,15 +18,15 @@ export default function ContactSection() {
               <div className="w-12 h-px bg-gold" />
             </div>
           </div>
-          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4 reveal">
+          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4">
             İletişim
           </h2>
-          <p className="text-text-light text-sm reveal delay-1">
+          <p className="text-text-light text-sm">
             Sorularınız için bize ulaşabilirsiniz
           </p>
         </div>
 
-        <div className="flex justify-center reveal delay-2">
+        <div className="flex justify-center">
           {contacts.map((c) => (
             <a key={c.name} href={c.phoneLink}
               className="glass rounded-3xl p-8 sm:p-10 border border-border shadow-xl flex items-center gap-5 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 w-full max-w-lg">

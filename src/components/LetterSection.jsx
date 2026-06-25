@@ -36,7 +36,7 @@ export default function LetterSection() {
   }
 
   return (
-    <section className="h-full overflow-y-auto py-16 sm:py-20 px-6 sm:px-8 bg-cream-dark relative">
+    <section className="h-screen w-full overflow-y-auto py-20 px-6 sm:px-8 bg-cream-dark relative">
       <div className="absolute top-10 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
 
       <div className="w-full max-w-3xl mx-auto relative z-10">
@@ -50,15 +50,15 @@ export default function LetterSection() {
               <div className="w-12 h-px bg-gold" />
             </div>
           </div>
-          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4 reveal">
+          <h2 className="font-[family-name:var(--font-alex)] text-5xl sm:text-6xl text-primary mb-4">
             Dileklerinizi Yazın
           </h2>
-          <p className="text-text-light text-sm reveal delay-1">
+          <p className="text-text-light text-sm">
             Güzel dileklerinizi bir mektup olarak bırakabilirsiniz
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl border border-border shadow-2xl overflow-hidden reveal-scale">
+        <div className="bg-white rounded-3xl border border-border shadow-2xl overflow-hidden">
           <div className="bg-gradient-to-r from-primary/5 to-gold/5 p-6 border-b border-border">
             <div className="flex justify-center">
               <svg className="w-16 h-16 text-gold/30 animate-float-slow" viewBox="0 0 100 100">

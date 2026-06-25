@@ -1,40 +1,27 @@
 import CountdownTimer from './CountdownTimer'
-import MusicPlayer from './MusicPlayer'
-import ScrollIndicator from './ScrollIndicator'
 
-/*
-  === TASARIM AYARLARI ===
-  Bu değerleri değiştirerek hero bölümündeki elemanların
-  dikey konumunu ve aralarındaki boşlukları ayarlayabilirsiniz.
-  Sayılar piksel cinsindendir.
-*/
 const HERO = {
-  paddingTop: 120,        // Üstten mesafe (mobil)
-  paddingTopSm: 100,      // Üstten mesafe (masaüstü)
-  paddingBottom: 80,      // Alttan mesafe
+  paddingTop: 120,
+  paddingTopSm: 100,
+  paddingBottom: 80,
   namesSize: 'text-7xl sm:text-8xl md:text-9xl',
-  namesOffsetX: 15,       // İsimlerin sağa/sola kaydırılması (px)
-  gapAfterNames: 50,      // İsimlerden sonra boşluk
-  gapAfterMessage: 30,    // Mesajdan sonra boşluk
-  gapAfterDate: 40,       // Tarihten sonra boşluk
+  namesOffsetX: 15,
+  gapAfterNames: 50,
+  gapAfterMessage: 30,
+  gapAfterDate: 40,
   messageSize: 'text-xl sm:text-2xl',
   dateSize: 'text-base sm:text-lg',
 }
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center"
-      style={{
-        paddingTop: `${HERO.paddingTop}px`,
-        paddingBottom: `${HERO.paddingBottom}px`,
-      }}>
+    <section className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
         backgroundSize: '400% 400%',
         animation: 'gradientXY 15s ease infinite'
       }} />
-
       <div className="absolute inset-0 bg-black/25" />
 
       <div className="absolute top-20 left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
@@ -42,7 +29,6 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        {/* Names */}
         <div style={{ marginBottom: `${HERO.gapAfterNames}px` }}>
           <h1 className={`font-[family-name:var(--font-alex)] ${HERO.namesSize} text-white drop-shadow-2xl animate-float-slow`}
             style={{ transform: `translateX(-${HERO.namesOffsetX}px)` }}>
@@ -59,7 +45,6 @@ export default function HeroSection() {
           </h1>
         </div>
 
-        {/* Message */}
         <div style={{ marginBottom: `${HERO.gapAfterMessage}px` }}>
           <p className={`${HERO.messageSize} text-gold max-w-md leading-relaxed drop-shadow-lg`}
             style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
@@ -67,23 +52,13 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Date */}
         <div style={{ marginBottom: `${HERO.gapAfterDate}px` }}>
           <p className={`${HERO.dateSize} text-white/80 tracking-[0.2em] font-light`}>
             05 / 09 / 2026
           </p>
         </div>
 
-        {/* Countdown */}
         <CountdownTimer targetDate="2026-09-05T19:00:00" />
-      </div>
-
-      <div className="absolute bottom-24 left-4 sm:left-8 z-10">
-        <MusicPlayer />
-      </div>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-        <ScrollIndicator />
       </div>
     </section>
   )
