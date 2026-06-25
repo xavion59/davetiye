@@ -2,9 +2,32 @@ import CountdownTimer from './CountdownTimer'
 import MusicPlayer from './MusicPlayer'
 import ScrollIndicator from './ScrollIndicator'
 
+/*
+  === TASARIM AYARLARI ===
+  Bu değerleri değiştirerek hero bölümündeki elemanların
+  dikey konumunu ve aralarındaki boşlukları ayarlayabilirsiniz.
+  Sayılar piksel cinsindendir.
+*/
+const HERO = {
+  paddingTop: 120,        // Üstten mesafe (mobil)
+  paddingTopSm: 100,      // Üstten mesafe (masaüstü)
+  paddingBottom: 80,      // Alttan mesafe
+  namesSize: 'text-7xl sm:text-8xl md:text-9xl',
+  namesOffsetX: 15,       // İsimlerin sağa/sola kaydırılması (px)
+  gapAfterNames: 50,      // İsimlerden sonra boşluk
+  gapAfterMessage: 30,    // Mesajdan sonra boşluk
+  gapAfterDate: 40,       // Tarihten sonra boşluk
+  messageSize: 'text-xl sm:text-2xl',
+  dateSize: 'text-base sm:text-lg',
+}
+
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-start pt-32 sm:pt-28 pb-28">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center"
+      style={{
+        paddingTop: `${HERO.paddingTop}px`,
+        paddingBottom: `${HERO.paddingBottom}px`,
+      }}>
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
@@ -19,28 +42,39 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white mb-1 drop-shadow-2xl animate-float-slow" style={{ transform: 'translateX(-15px)' }}>
-          Hazal
-        </h1>
-
-        <div className="flex items-center gap-3 sm:gap-5 my-1">
-          <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-          <span className="font-[family-name:var(--font-alex)] text-3xl sm:text-4xl text-gold animate-pulse-heart drop-shadow-lg">&</span>
-          <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+        {/* Names */}
+        <div style={{ marginBottom: `${HERO.gapAfterNames}px` }}>
+          <h1 className={`font-[family-name:var(--font-alex)] ${HERO.namesSize} text-white drop-shadow-2xl animate-float-slow`}
+            style={{ transform: `translateX(-${HERO.namesOffsetX}px)` }}>
+            Hazal
+          </h1>
+          <div className="flex items-center gap-3 sm:gap-5 my-1">
+            <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <span className="font-[family-name:var(--font-alex)] text-3xl sm:text-4xl text-gold animate-pulse-heart drop-shadow-lg">&</span>
+            <div className="w-10 sm:w-20 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+          </div>
+          <h1 className={`font-[family-name:var(--font-alex)] ${HERO.namesSize} text-white drop-shadow-2xl animate-float-slow`}
+            style={{ animationDelay: '1s', transform: `translateX(${HERO.namesOffsetX}px)` }}>
+            Oğuz
+          </h1>
         </div>
 
-        <h1 className="font-[family-name:var(--font-alex)] text-7xl sm:text-8xl md:text-9xl text-white drop-shadow-2xl animate-float-slow" style={{ animationDelay: '1s', transform: 'translateX(15px)' }}>
-          Oğuz
-        </h1>
+        {/* Message */}
+        <div style={{ marginBottom: `${HERO.gapAfterMessage}px` }}>
+          <p className={`${HERO.messageSize} text-gold max-w-md leading-relaxed drop-shadow-lg`}
+            style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+            Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
+          </p>
+        </div>
 
-        <p className="text-xl sm:text-2xl text-gold mt-16 mb-8 max-w-md leading-relaxed drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
-          Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
-        </p>
+        {/* Date */}
+        <div style={{ marginBottom: `${HERO.gapAfterDate}px` }}>
+          <p className={`${HERO.dateSize} text-white/80 tracking-[0.2em] font-light`}>
+            05 / 09 / 2026
+          </p>
+        </div>
 
-        <p className="text-white/80 text-base sm:text-lg tracking-[0.2em] mb-10 font-light">
-          05 / 09 / 2026
-        </p>
-
+        {/* Countdown */}
         <CountdownTimer targetDate="2026-09-05T19:00:00" />
       </div>
 
