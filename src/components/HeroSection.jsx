@@ -70,7 +70,7 @@ export default function HeroSection() {
       </div>
 
       {/* Music player - absolute inside hero */}
-      <div className="absolute bottom-6 left-4 sm:left-8 z-50">
+      <div className="absolute top-4 left-4 z-50">
         <MusicPlayer />
       </div>
 
