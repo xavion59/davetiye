@@ -32,8 +32,8 @@ body {
 @keyframes sway { 0%,100%{transform:rotate(0deg)} 50%{transform:rotate(4deg)} }
 @keyframes swayReverse { 0%,100%{transform:rotate(0deg)} 50%{transform:rotate(-4deg)} }
 @keyframes swaySlow { 0%,100%{transform:rotate(0deg) translateY(0)} 50%{transform:rotate(2deg) translateY(-6px)} }
-@keyframes fallLeaf { 0%{transform:translateY(-10vh) rotate(0) translateX(0);opacity:0} 10%{opacity:.6} 90%{opacity:.6} 100%{transform:translateY(105vh) rotate(360deg) translateX(80px);opacity:0} }
-@keyframes fallLeaf2 { 0%{transform:translateY(-10vh) rotate(0) translateX(0);opacity:0} 10%{opacity:.4} 90%{opacity:.4} 100%{transform:translateY(105vh) rotate(-270deg) translateX(-60px);opacity:0} }
+@keyframes fallLeaf { 0%{transform:translateY(-10vh) rotate(0) translateX(0);opacity:0} 10%{opacity:.6} 90%{opacity:.6} 100%{transform:translateY(105vh) rotate(360deg) translateX(25px);opacity:0} }
+@keyframes fallLeaf2 { 0%{transform:translateY(-10vh) rotate(0) translateX(0);opacity:0} 10%{opacity:.4} 90%{opacity:.4} 100%{transform:translateY(105vh) rotate(-270deg) translateX(-25px);opacity:0} }
 @keyframes blob { 0%{transform:translate(0) scale(1)} 33%{transform:translate(30px,-50px) scale(1.1)} 66%{transform:translate(-20px,20px) scale(.9)} 100%{transform:translate(0) scale(1)} }
 @keyframes pulseHeart { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
 @keyframes pulseSlow { 0%,100%{opacity:.3} 50%{opacity:.8} }
@@ -112,6 +112,10 @@ body {
 .leaf-fall:nth-child(6) { left:70%; animation:fallLeaf2 8s linear infinite 5s; color:#8fb996; font-size:.8rem; }
 .leaf-fall:nth-child(7) { left:80%; animation:fallLeaf 10s linear infinite 2.5s; color:#c9a96e; }
 .leaf-fall:nth-child(8) { left:92%; animation:fallLeaf2 11s linear infinite 4.5s; color:#6b8f71; font-size:1rem; }
+.leaf-fall:nth-child(9) { left:10%; animation:fallLeaf 13s linear infinite 1.5s; color:#d4bc8e; font-size:.9rem; }
+.leaf-fall:nth-child(10) { left:45%; animation:fallLeaf2 9s linear infinite 3.5s; color:#8fb996; font-size:1rem; }
+.leaf-fall:nth-child(11) { left:65%; animation:fallLeaf 10s linear infinite 5.5s; color:#c9a96e; font-size:.8rem; }
+.leaf-fall:nth-child(12) { left:85%; animation:fallLeaf2 12s linear infinite 0.5s; color:#d4bc8e; font-size:1.1rem; }
 
 /* ===== UTILITIES ===== */
 .glass { background:rgba(255,255,255,.7); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
