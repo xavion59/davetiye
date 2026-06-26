@@ -10,8 +10,8 @@ const DEFAULT_POSITIONS = {
   message: { x: 50, y: 72 },
   date: { x: 50, y: 82 },
   countdown: { x: 50, y: 88 },
-  familyGroom: { x: 20, y: 100 },
-  familyBride: { x: 80, y: 100 },
+  familyGroom: { x: 25, y: 98 },
+  familyBride: { x: 75, y: 98 },
 }
 
 function loadPositions() {
