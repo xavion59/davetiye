@@ -120,18 +120,17 @@ export default function HeroSection() {
       </div>
 
       {/* Family info */}
-      <div className="absolute bottom-20 left-0 w-full z-10 text-center px-4">
-        <div className="max-w-md mx-auto space-y-4">
-          <div>
+      <div className="absolute bottom-20 left-0 w-full z-10 px-6">
+        <div className="max-w-3xl mx-auto flex justify-between items-center">
+          <div className="text-left">
             <p className="text-white/60 text-xs tracking-[0.2em] uppercase mb-1">Gelinin Ailesi</p>
-            <p className="text-white text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+            <p className="text-gold text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
               Sibel &amp; Serdar Yılmaz
             </p>
           </div>
-          <div className="w-16 h-px bg-gold/40 mx-auto" />
-          <div>
+          <div className="text-right">
             <p className="text-white/60 text-xs tracking-[0.2em] uppercase mb-1">Damadın Ailesi</p>
-            <p className="text-white text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+            <p className="text-gold text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
               Gülten &amp; İsmail Başpınar
             </p>
           </div>
