@@ -121,24 +121,24 @@ export default function HeroSection() {
 
       {/* Family info - draggable */}
       <Draggable id="familyGroom" positions={positions} setPositions={setPositions} editing={editing}>
-        <div className="text-center">
+        <div className="text-center w-56">
           <p className="text-gold text-xs tracking-[0.2em] uppercase mb-1">Gelinin Ailesi</p>
-          <p className="text-white text-lg sm:text-xl drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          <p className="text-white text-lg sm:text-xl drop-shadow-lg whitespace-nowrap" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Sibel &amp; Serdar
           </p>
-          <p className="text-white text-base sm:text-lg drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          <p className="text-white text-base sm:text-lg drop-shadow-lg whitespace-nowrap" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Yılmaz
           </p>
         </div>
       </Draggable>
 
       <Draggable id="familyBride" positions={positions} setPositions={setPositions} editing={editing}>
-        <div className="text-center">
+        <div className="text-center w-56">
           <p className="text-gold text-xs tracking-[0.2em] uppercase mb-1">Damadın Ailesi</p>
-          <p className="text-white text-lg sm:text-xl drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          <p className="text-white text-lg sm:text-xl drop-shadow-lg whitespace-nowrap" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Gülten &amp; İsmail
           </p>
-          <p className="text-white text-base sm:text-lg drop-shadow-lg" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+          <p className="text-white text-base sm:text-lg drop-shadow-lg whitespace-nowrap" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Başpınar
           </p>
         </div>
