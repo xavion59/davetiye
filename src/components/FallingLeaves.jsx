@@ -4,10 +4,14 @@ export default function FallingLeaves() {
       <div className="leaf-fall">🍃</div>
       <div className="leaf-fall">🌿</div>
       <div className="leaf-fall">🍂</div>
+      <div className="leaf-fall">🌸</div>
       <div className="leaf-fall">🍃</div>
+      <div className="leaf-fall">🌼</div>
       <div className="leaf-fall">🌿</div>
       <div className="leaf-fall">🍂</div>
+      <div className="leaf-fall">🌸</div>
       <div className="leaf-fall">🍃</div>
+      <div className="leaf-fall">🌼</div>
       <div className="leaf-fall">🌿</div>
     </div>
   )
