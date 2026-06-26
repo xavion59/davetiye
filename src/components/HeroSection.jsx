@@ -28,7 +28,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[120vh] w-full overflow-hidden">
+    <section className="relative min-h-[120vh] w-full overflow-hidden border-4 border-gold m-0">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
