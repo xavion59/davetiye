@@ -28,7 +28,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section className="relative min-h-[120vh] w-full overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0" style={{
         background: 'linear-gradient(135deg, #4a6e50 0%, #6b8f71 25%, #8fb996 50%, #6b8f71 75%, #4a6e50 100%)',
@@ -117,6 +117,25 @@ export default function HeroSection() {
         <Draggable id="countdown" positions={positions} setPositions={setPositions} editing={editing}>
           <CountdownTimer targetDate="2026-09-05T19:00:00" />
         </Draggable>
+      </div>
+
+      {/* Family info */}
+      <div className="absolute bottom-20 left-0 w-full z-10 text-center px-4">
+        <div className="max-w-md mx-auto space-y-4">
+          <div>
+            <p className="text-white/60 text-xs tracking-[0.2em] uppercase mb-1">Gelinin Ailesi</p>
+            <p className="text-white text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+              Sibel &amp; Serdar Yılmaz
+            </p>
+          </div>
+          <div className="w-16 h-px bg-gold/40 mx-auto" />
+          <div>
+            <p className="text-white/60 text-xs tracking-[0.2em] uppercase mb-1">Damadın Ailesi</p>
+            <p className="text-white text-lg sm:text-xl" style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
+              Gülten &amp; İsmail Başpınar
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )
