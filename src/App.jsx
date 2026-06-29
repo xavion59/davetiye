@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HeroSection from './components/HeroSection'
 import DetailsPage from './components/DetailsPage'
@@ -5,11 +6,16 @@ import RsvpSection from './components/RsvpSection'
 import PhotoUpload from './components/PhotoUpload'
 import ContactSection from './components/ContactSection'
 import FallingLeaves from './components/FallingLeaves'
+import EnvelopeIntro from './components/EnvelopeIntro'
 import AdminDashboard from './components/AdminDashboard'
 
 function InvitationPage() {
+  const [envelopeDone, setEnvelopeDone] = useState(false)
+
   return (
     <div className="min-h-screen relative bg-cream overflow-x-hidden">
+      {!envelopeDone && <EnvelopeIntro onOpen={() => setEnvelopeDone(true)} />}
+
       <FallingLeaves />
 
       <HeroSection />
