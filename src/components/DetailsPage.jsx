@@ -1,7 +1,7 @@
 export default function DetailsPage() {
   return (
     <section className="bg-cream overflow-hidden" style={{ width: '100%', minHeight: '85vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '64px 24px' }}>
-      <div className="rounded-3xl shadow-xl" style={{ width: '100%', maxWidth: '480px', border: '5px solid #6b8f71', padding: '56px 48px', backgroundColor: 'rgba(255,255,255,0.6)' }}>
+      <div className="rounded-3xl shadow-xl" style={{ width: '100%', maxWidth: '600px', border: '5px solid #6b8f71', padding: '60px 64px', backgroundColor: 'rgba(255,255,255,0.6)' }}>
         <h2 className="font-[family-name:var(--font-alex)] text-center" style={{ fontSize: 'clamp(2rem, 5vw, 2.8rem)', color: '#6b8f71', marginBottom: '40px' }}>
           Düğün Detayları
         </h2>
