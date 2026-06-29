@@ -33,7 +33,7 @@ export default function RsvpSection() {
   if (submitted) {
     return (
       <section className="w-full min-h-[90vh] flex items-center justify-center px-5 sm:px-8 py-16 bg-cream-dark overflow-hidden">
-        <div className="w-full max-w-xl mx-auto border-[5px] border-primary rounded-3xl px-10 sm:px-14 py-14 sm:py-18 bg-white/60 shadow-xl text-center">
+        <div className="w-full max-w-xl mx-auto border-[5px] border-primary rounded-3xl px-8 sm:px-12 py-12 sm:py-16 bg-white/60 shadow-xl text-center">
           <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-8">
             <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -49,7 +49,7 @@ export default function RsvpSection() {
 
   return (
     <section className="w-full min-h-[90vh] flex items-center justify-center px-5 sm:px-8 py-16 bg-cream-dark overflow-hidden">
-      <div className="w-full max-w-xl mx-auto border-[5px] border-primary rounded-3xl px-10 sm:px-14 py-14 sm:py-18 bg-white/60 shadow-xl">
+      <div className="w-full max-w-xl mx-auto border-[5px] border-primary rounded-3xl px-8 sm:px-12 py-12 sm:py-16 bg-white/60 shadow-xl">
         <div className="text-center mb-10">
           <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary mb-3">
             Katılım Durumu
@@ -57,7 +57,7 @@ export default function RsvpSection() {
           <p className="text-text-light text-base">Katılımınızı ve hatıra notunuzu bırakabilirsiniz</p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <label className="block text-sm font-semibold text-text mb-2">Ad Soyad</label>
             <input
