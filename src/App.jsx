@@ -9,7 +9,7 @@ import AdminDashboard from './components/AdminDashboard'
 
 function InvitationPage() {
   return (
-    <div className="min-h-screen relative bg-cream">
+    <div className="min-h-screen relative bg-cream overflow-x-hidden">
       <FallingLeaves />
 
       <HeroSection />

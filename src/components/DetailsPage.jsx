@@ -1,7 +1,7 @@
 export default function DetailsPage() {
   return (
-    <section className="w-full min-h-[85vh] flex items-center justify-center px-6 sm:px-10 py-16 bg-cream">
-      <div className="w-full max-w-2xl mx-auto border-[5px] border-primary rounded-3xl p-8 sm:p-12 bg-white/60 shadow-xl">
+    <section className="w-full min-h-[85vh] flex items-center justify-center px-5 sm:px-8 py-16 bg-cream overflow-hidden">
+      <div className="w-full max-w-xl mx-auto border-[5px] border-primary rounded-3xl p-6 sm:p-10 bg-white/60 shadow-xl">
         <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-10">
           Düğün Detayları
         </h2>
