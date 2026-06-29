@@ -14,9 +14,13 @@ function InvitationPage() {
 
       <HeroSection />
 
+      <div className="py-12 sm:py-16" />
       <DetailsPage />
+      <div className="py-12 sm:py-16" />
       <RsvpSection />
+      <div className="py-12 sm:py-16" />
       <PhotoUpload />
+      <div className="py-12 sm:py-16" />
       <ContactSection />
 
       <footer className="py-8 text-center text-text-light text-sm border-t border-border">
