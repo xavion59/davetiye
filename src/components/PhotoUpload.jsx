@@ -45,10 +45,10 @@ export default function PhotoUpload() {
   }
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center px-6 sm:px-10 py-16 bg-cream relative">
+    <section className="w-full min-h-screen flex items-center justify-center px-8 sm:px-12 py-16 bg-cream relative">
       <div className="absolute bottom-10 right-0 w-56 h-56 bg-gold/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
 
-      <div className="w-full max-w-3xl border-4 border-primary rounded-3xl p-8 sm:p-12 bg-white/60 shadow-xl relative z-10">
+      <div className="w-full max-w-3xl border-[5px] border-primary rounded-3xl p-8 sm:p-12 bg-white/60 shadow-xl relative z-10">
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="flex items-center gap-3">

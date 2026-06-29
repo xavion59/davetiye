@@ -4,10 +4,10 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center px-6 sm:px-10 py-16 bg-cream-dark relative">
+    <section className="w-full min-h-screen flex items-center justify-center px-8 sm:px-12 py-16 bg-cream-dark relative">
       <div className="absolute top-10 right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
 
-      <div className="w-full max-w-3xl border-4 border-primary rounded-3xl p-8 sm:p-12 bg-white/60 shadow-xl relative z-10">
+      <div className="w-full max-w-3xl border-[5px] border-primary rounded-3xl p-8 sm:p-12 bg-white/60 shadow-xl relative z-10">
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="flex items-center gap-3">
