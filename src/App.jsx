@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HeroSection from './components/HeroSection'
 import DetailsPage from './components/DetailsPage'
-import LetterSection from './components/LetterSection'
+import RsvpSection from './components/RsvpSection'
 import PhotoUpload from './components/PhotoUpload'
 import ContactSection from './components/ContactSection'
 import FallingLeaves from './components/FallingLeaves'
@@ -15,7 +15,7 @@ function InvitationPage() {
       <HeroSection />
 
       <DetailsPage />
-      <LetterSection />
+      <RsvpSection />
       <PhotoUpload />
       <ContactSection />
 
