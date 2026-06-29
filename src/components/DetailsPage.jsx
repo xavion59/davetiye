@@ -1,6 +1,6 @@
 export default function DetailsPage() {
   return (
-    <section className="w-full px-5 sm:px-8 py-16 sm:py-20 bg-cream">
+    <section className="w-full px-5 sm:px-8 py-16 sm:py-20 bg-cream border-4 border-primary">
 
       <h2 className="font-[family-name:var(--font-alex)] text-4xl sm:text-5xl text-primary text-center mb-8">
         Düğün Detayları
