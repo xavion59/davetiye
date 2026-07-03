@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HeroSection from './components/HeroSection'
 import DetailsPage from './components/DetailsPage'
+import NikahSection from './components/NikahSection'
 import RsvpSection from './components/RsvpSection'
 import PhotoUpload from './components/PhotoUpload'
 import ContactSection from './components/ContactSection'
@@ -22,6 +23,8 @@ function InvitationPage() {
 
       <div className="py-8 sm:py-12" />
       <DetailsPage />
+      <div className="py-8 sm:py-12" />
+      <NikahSection />
       <div className="py-8 sm:py-12" />
       <RsvpSection />
       <div className="py-8 sm:py-12" />
