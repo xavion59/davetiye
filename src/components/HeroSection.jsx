@@ -100,7 +100,7 @@ export default function HeroSection({ audioRef }) {
 
         <Draggable id="oguz" positions={positions} setPositions={setPositions} editing={editing}>
           <h1 className="font-[family-name:var(--font-alex)] text-6xl sm:text-7xl md:text-8xl text-white drop-shadow-2xl animate-float-slow whitespace-nowrap" style={{ animationDelay: '1s' }}>
-            Oğuz
+            Oğuz Uğur
           </h1>
         </Draggable>
 
