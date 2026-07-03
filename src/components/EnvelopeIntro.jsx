@@ -1,14 +1,27 @@
 import { useState } from 'react'
 
+// The wax-seal fold line sits at ~52% of the image height
+const FLAP_APEX = '52%'
+// Triangle that IS the flap
+const FLAP_CLIP = `polygon(0% 0%, 100% 0%, 50% ${FLAP_APEX})`
+// Everything EXCEPT the flap triangle (envelope body)
+const BODY_CLIP = `polygon(0% 0%, 50% ${FLAP_APEX}, 100% 0%, 100% 100%, 0% 100%)`
+
 export default function EnvelopeIntro({ onOpen }) {
-  const [opening, setOpening] = useState(false)
-  const [done, setDone] = useState(false)
+  const [opening,      setOpening     ] = useState(false)
+  const [letterRising, setLetterRising] = useState(false)
+  const [fading,       setFading      ] = useState(false)
+  const [done,         setDone        ] = useState(false)
 
   const handleClick = () => {
     if (opening || done) return
     setOpening(true)
-    setTimeout(() => setDone(true), 2200)
-    setTimeout(() => onOpen(), 3000)
+    // flap animation finishes ~1.15 s → letter starts rising
+    setTimeout(() => setLetterRising(true), 1200)
+    // letter has cleared the top → fade-out overlay
+    setTimeout(() => setFading(true),       2500)
+    setTimeout(() => setDone(true),         3100)
+    setTimeout(() => onOpen(),              3100)
   }
 
   if (done) return null
@@ -16,239 +29,173 @@ export default function EnvelopeIntro({ onOpen }) {
   return (
     <div
       onClick={handleClick}
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-1000 ${opening ? 'opacity-0' : 'opacity-100'}`}
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
       style={{
         background: 'radial-gradient(ellipse at center, #1a3a2a 0%, #0d1f15 50%, #060f0a 100%)',
         cursor: opening ? 'default' : 'pointer',
+        opacity: fading ? 0 : 1,
+        transition: 'opacity 0.7s ease',
       }}
     >
-      {/* Velvet texture overlay */}
+      {/* velvet texture */}
       <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+        backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.03) 2px,rgba(255,255,255,0.03) 4px)',
+      }} />
+      {/* warm ambient glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 70%)',
       }} />
 
-      <div className={`relative transition-all duration-1000 ${opening ? 'scale-150 -translate-y-32 opacity-0' : 'scale-100 hover:scale-[1.03]'}`}>
+      {/* ─── outer wrapper ─── */}
+      <div
+        className={!opening ? 'transition-transform duration-300 hover:scale-[1.02]' : ''}
+        style={{
+          width: 'min(88vw, 520px)',
+          filter: 'drop-shadow(0 32px 80px rgba(0,0,0,0.75)) drop-shadow(0 6px 20px rgba(0,0,0,0.5))',
+        }}
+      >
+        <div className="relative">
 
-        {/* Shadow under envelope */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-8 rounded-[50%] bg-black/40 blur-xl" />
-
-        {/* Main envelope */}
-        <div className="relative" style={{ width: 'min(85vw, 480px)', aspectRatio: '4/3' }}>
-
-          {/* Envelope body - cream/beige */}
-          <div className="absolute inset-0 rounded-sm" style={{
-            background: 'linear-gradient(165deg, #f8f4ea 0%, #f0e8d8 30%, #e8dece 70%, #e0d5c4 100%)',
-            boxShadow: '0 25px 80px rgba(0,0,0,0.5), 0 5px 20px rgba(0,0,0,0.3)',
-          }} />
-
-          {/* Gold outer border */}
-          <div className="absolute inset-0 rounded-sm" style={{
-            border: '2.5px solid #c9a96e',
-            boxShadow: 'inset 0 0 0 4px rgba(201,169,110,0.15)',
-          }} />
-
-          {/* Inner gold line */}
-          <div className="absolute rounded-sm" style={{
-            inset: '8px',
-            border: '1px solid rgba(201,169,110,0.4)',
-          }} />
-
-          {/* Corner ornaments */}
-          <svg className="absolute top-3 left-3 w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 60 60" fill="none">
-            <path d="M5 55 C5 30, 30 5, 55 5" stroke="#c9a96e" strokeWidth="1.2" fill="none" opacity="0.7"/>
-            <path d="M5 45 C5 25, 25 5, 45 5" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.5"/>
-            <circle cx="8" cy="8" r="2" fill="#c9a96e" opacity="0.6"/>
-            <path d="M12 5 Q8 8 5 12" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.4"/>
-            <path d="M5 20 Q10 15 20 10" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.3"/>
-            {/* Floral curl */}
-            <path d="M5 35 C5 20, 15 10, 35 5" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-            <path d="M15 5 C10 10, 5 15, 5 25" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-            <circle cx="10" cy="10" r="1.5" fill="none" stroke="#c9a96e" strokeWidth="0.5" opacity="0.4"/>
-          </svg>
-
-          <svg className="absolute top-3 right-3 w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 60 60" fill="none" style={{ transform: 'scaleX(-1)' }}>
-            <path d="M5 55 C5 30, 30 5, 55 5" stroke="#c9a96e" strokeWidth="1.2" fill="none" opacity="0.7"/>
-            <path d="M5 45 C5 25, 25 5, 45 5" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.5"/>
-            <circle cx="8" cy="8" r="2" fill="#c9a96e" opacity="0.6"/>
-            <path d="M12 5 Q8 8 5 12" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.4"/>
-            <path d="M5 20 Q10 15 20 10" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.3"/>
-            <path d="M5 35 C5 20, 15 10, 35 5" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-            <path d="M15 5 C10 10, 5 15, 5 25" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-            <circle cx="10" cy="10" r="1.5" fill="none" stroke="#c9a96e" strokeWidth="0.5" opacity="0.4"/>
-          </svg>
-
-          <svg className="absolute bottom-3 left-3 w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 60 60" fill="none" style={{ transform: 'scaleY(-1)' }}>
-            <path d="M5 55 C5 30, 30 5, 55 5" stroke="#c9a96e" strokeWidth="1.2" fill="none" opacity="0.7"/>
-            <path d="M5 45 C5 25, 25 5, 45 5" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.5"/>
-            <circle cx="8" cy="8" r="2" fill="#c9a96e" opacity="0.6"/>
-            <path d="M12 5 Q8 8 5 12" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.4"/>
-            <path d="M5 20 Q10 15 20 10" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.3"/>
-          </svg>
-
-          <svg className="absolute bottom-3 right-3 w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 60 60" fill="none" style={{ transform: 'scale(-1)' }}>
-            <path d="M5 55 C5 30, 30 5, 55 5" stroke="#c9a96e" strokeWidth="1.2" fill="none" opacity="0.7"/>
-            <path d="M5 45 C5 25, 25 5, 45 5" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.5"/>
-            <circle cx="8" cy="8" r="2" fill="#c9a96e" opacity="0.6"/>
-            <path d="M12 5 Q8 8 5 12" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.4"/>
-            <path d="M5 20 Q10 15 20 10" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.3"/>
-          </svg>
-
-          {/* Envelope flap - green triangle */}
+          {/* ── 1. BACK FLAP (green inside-of-lid) ──
+               Starts at rotateX(-90deg) = edge-on (invisible).
+               Rotates to -170° when opening.
+               z-index 1 ensures it stays BEHIND the letter when it points UP. */}
           <div
-            className="absolute top-0 left-0 w-full"
             style={{
-              height: '52%',
-              clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-              background: 'linear-gradient(180deg, #3d5c43 0%, #4a6e50 20%, #5a7f60 60%, #4a6e50 100%)',
+              position: 'absolute', inset: 0,
+              clipPath: FLAP_CLIP,
               transformOrigin: 'top center',
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-              transform: opening ? 'perspective(800px) rotateX(180deg)' : 'none',
+              transform: opening
+                ? 'perspective(1200px) rotateX(-170deg)'
+                : 'perspective(1200px) rotateX(-90deg)',
+              transition: opening
+                ? 'transform 0.65s cubic-bezier(0, 0, 0.4, 1) 0.5s'
+                : 'none',
+              zIndex: 1,
+              background: 'linear-gradient(170deg, #1e3327 0%, #2e4a35 40%, #3a5740 70%, #4a6e50 100%)',
+            }}
+          >
+            {/* subtle woven texture on inside of lid */}
+            <div style={{
+              position: 'absolute', inset: 0, opacity: 0.3,
+              backgroundImage: 'repeating-linear-gradient(135deg,transparent,transparent 5px,rgba(0,0,0,0.06) 5px,rgba(0,0,0,0.06) 10px)',
+            }} />
+          </div>
+
+          {/* ── 2. GREEN INTERIOR ──
+               Fills the triangular flap gap.
+               Visible once the front flap rotates away.
+               z-index 2 so the letter card sits on top of it. */}
+          <div
+            style={{
+              position: 'absolute', inset: 0,
+              clipPath: FLAP_CLIP,
+              zIndex: 2,
+              background: 'linear-gradient(160deg, #1a2d21 0%, #243b2b 60%, #2a4332 100%)',
+            }}
+          >
+            <div style={{
+              position: 'absolute', inset: 0, opacity: 0.2,
+              backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 3px,rgba(0,0,0,0.02) 6px)',
+            }} />
+          </div>
+
+          {/* ── 3. LETTER CARD ──
+               z-index 3 so it's behind the body image (z-index 4) but in front of
+               the back flap (z-index 1) and interior (z-index 2). */}
+          <div
+            style={{
+              position: 'absolute',
+              left: '9%', width: '82%',
+              bottom: letterRising ? '110%' : '54%',
+              opacity: opening ? 1 : 0,
+              transition: [
+                'opacity 0.35s ease 0s',
+                letterRising
+                  ? 'bottom 1.0s cubic-bezier(0.22, 0, 0.2, 1) 0s'
+                  : '',
+              ].filter(Boolean).join(', '),
+              zIndex: 3,
+              borderRadius: '2px',
+              background: 'linear-gradient(180deg, #fffef9 0%, #faf8f4 100%)',
+              boxShadow: '0 -8px 28px rgba(0,0,0,0.22), 0 2px 10px rgba(0,0,0,0.12)',
+              padding: '22px 20px',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', gap: '7px',
+            }}
+          >
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1.5px', background: 'linear-gradient(90deg,transparent,#c9a96e 35%,#c9a96e 65%,transparent)' }} />
+            <p style={{ fontSize: 'clamp(8px,1.8vw,11px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: '#c9a96e', margin: 0 }}>
+              Davetlisiniz
+            </p>
+            <p style={{ fontFamily: "'Alex Brush', cursive", fontSize: 'clamp(1.4rem,5vw,2.2rem)', color: '#4a6e50', margin: 0, lineHeight: 1.1 }}>
+              Hazal &amp; Oğuz
+            </p>
+            <div style={{ width: '48px', height: '1px', background: 'rgba(201,169,110,0.45)' }} />
+            <p style={{ fontSize: 'clamp(7px,1.6vw,10px)', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7a6b5d', margin: 0 }}>
+              05 / 09 / 2026
+            </p>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '1.5px', background: 'linear-gradient(90deg,transparent,#c9a96e 35%,#c9a96e 65%,transparent)' }} />
+          </div>
+
+          {/* ── 4. BODY IMAGE (flap triangle excluded) ──
+               z-index 4 hides the letter card until it rises above the body. */}
+          <img
+            src="/zarf.jpg"
+            alt="Düğün davetiyesi zarfı"
+            draggable={false}
+            style={{
+              display: 'block', width: '100%',
+              clipPath: BODY_CLIP,
+              position: 'relative',
+              zIndex: 4,
+            }}
+          />
+
+          {/* ── 5. FRONT FLAP (photo, rotates 0° → -90°, then disappears) ── */}
+          <img
+            src="/zarf.jpg"
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+            style={{
+              position: 'absolute', top: 0, left: 0,
+              width: '100%',
+              clipPath: FLAP_CLIP,
+              transformOrigin: 'top center',
+              transform: opening
+                ? 'perspective(1200px) rotateX(-90deg)'
+                : 'perspective(1200px) rotateX(0deg)',
+              transition: 'transform 0.58s cubic-bezier(0.4, 0, 1, 1) 0s',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
               zIndex: 5,
             }}
           />
 
-          {/* Gold border on flap */}
+          {/* fold-line shadow (fades as flap lifts) */}
           <div
-            className="absolute top-0 left-0 w-full pointer-events-none"
             style={{
-              height: '52%',
-              clipPath: 'polygon(1% 1%, 99% 1%, 50% 98%)',
-              border: '1px solid rgba(201,169,110,0.5)',
+              position: 'absolute', left: 0,
+              top: FLAP_APEX,
+              width: '100%', height: '5px',
+              transform: 'translateY(-100%)',
+              background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), transparent)',
               zIndex: 6,
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-              transformOrigin: 'top center',
-              transform: opening ? 'perspective(800px) rotateX(180deg)' : 'none',
+              opacity: opening ? 0 : 0.6,
+              transition: 'opacity 0.4s ease 0.2s',
+              pointerEvents: 'none',
             }}
           />
 
-          {/* Scroll ornament on flap */}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: '6%',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              zIndex: 7,
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s',
-              transformOrigin: 'top center',
-              transform: opening ? 'translateX(-50%) perspective(800px) rotateX(180deg)' : 'translateX(-50%)',
-              opacity: opening ? 0 : 1,
-            }}
-          >
-            <svg width="160" height="40" viewBox="0 0 160 40" fill="none" className="sm:w-[200px]">
-              {/* Central ornament */}
-              <path d="M80 5 L80 35" stroke="#c9a96e" strokeWidth="0.8" opacity="0.6"/>
-              <path d="M75 8 C75 5, 80 2, 85 8" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.7"/>
-              <path d="M72 12 C72 6, 80 0, 88 12" stroke="#c9a96e" strokeWidth="0.6" fill="none" opacity="0.5"/>
-              {/* Left swirl */}
-              <path d="M70 20 C55 20, 45 15, 30 20 C20 23, 15 18, 10 20" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.6"/>
-              <path d="M30 20 C35 15, 40 18, 45 15" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.4"/>
-              <path d="M50 18 C48 12, 55 10, 55 16" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-              {/* Right swirl */}
-              <path d="M90 20 C105 20, 115 15, 130 20 C140 23, 145 18, 150 20" stroke="#c9a96e" strokeWidth="0.8" fill="none" opacity="0.6"/>
-              <path d="M130 20 C125 15, 120 18, 115 15" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.4"/>
-              <path d="M110 18 C112 12, 105 10, 105 16" stroke="#c9a96e" strokeWidth="0.5" fill="none" opacity="0.3"/>
-              {/* Dots */}
-              <circle cx="10" cy="20" r="1.5" fill="#c9a96e" opacity="0.5"/>
-              <circle cx="150" cy="20" r="1.5" fill="#c9a96e" opacity="0.5"/>
-              <circle cx="80" cy="3" r="1" fill="#c9a96e" opacity="0.4"/>
-            </svg>
-          </div>
+        </div>{/* /relative */}
 
-          {/* Wax Seal */}
-          <div className="absolute left-1/2 -translate-x-1/2" style={{ top: '38%', zIndex: 10 }}>
-            <div
-              className={`relative transition-all duration-600 ${opening ? 'scale-150 opacity-0' : 'scale-100 opacity-100'}`}
-              style={{ transition: 'transform 0.5s ease-out, opacity 0.4s ease' }}
-            >
-              {/* Outer ring */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full relative" style={{
-                background: 'radial-gradient(circle at 35% 30%, #e8d5a0 0%, #d4bc8e 20%, #c9a96e 45%, #a8884d 75%, #8a6e3a 100%)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3), inset 0 2px 6px rgba(255,255,255,0.3), inset 0 -3px 8px rgba(0,0,0,0.2)',
-              }}>
-                {/* Scalloped edge */}
-                <div className="absolute inset-[3px] rounded-full" style={{
-                  border: '1px solid rgba(255,255,255,0.2)',
-                }} />
-
-                {/* Inner circle */}
-                <div className="absolute inset-[6px] sm:inset-[7px] rounded-full flex items-center justify-center" style={{
-                  background: 'radial-gradient(circle at 40% 35%, #c9a96e 0%, #a8884d 60%, #8a6e3a 100%)',
-                  boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.2), inset 0 -2px 4px rgba(0,0,0,0.2)',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                }}>
-                  {/* Decorative dots around the seal */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 rounded-full bg-white/20"
-                      style={{
-                        top: `${50 + 42 * Math.sin((i * 30 * Math.PI) / 180)}%`,
-                        left: `${50 + 42 * Math.cos((i * 30 * Math.PI) / 180)}%`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    />
-                  ))}
-
-                  {/* H & O text */}
-                  <div className="text-center" style={{ marginTop: '2px' }}>
-                    <div style={{
-                      fontFamily: "'Georgia', 'Times New Roman', serif",
-                      fontSize: 'clamp(1rem, 3.5vw, 1.4rem)',
-                      fontWeight: 'bold',
-                      color: '#f0e8d8',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.3), 0 -1px 1px rgba(255,255,255,0.15)',
-                      letterSpacing: '2px',
-                      lineHeight: 1,
-                    }}>
-                      H &amp; O
-                    </div>
-                    {/* Small decorative lines */}
-                    <div className="flex items-center justify-center gap-1 mt-1">
-                      <div className="w-3 h-px bg-white/30" />
-                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                        <path d="M4 0 L5.5 3 L4 2 L2.5 3 Z" fill="rgba(255,255,255,0.3)" />
-                      </svg>
-                      <div className="w-3 h-px bg-white/30" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Letter paper inside (rises up when opening) */}
-          <div
-            className="absolute rounded-sm overflow-hidden"
-            style={{
-              top: '12%',
-              left: '10%',
-              width: '80%',
-              height: '70%',
-              background: 'linear-gradient(180deg, #fffef9 0%, #faf8f4 100%)',
-              boxShadow: '0 -2px 10px rgba(0,0,0,0.08)',
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s, opacity 0.5s ease 0.4s',
-              transform: opening ? 'translateY(-30%)' : 'translateY(10%)',
-              opacity: opening ? 1 : 0,
-              zIndex: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '20px',
-            }}
-          >
-            <p className="text-[9px] sm:text-[11px] tracking-[0.25em] uppercase mb-1" style={{ color: '#c9a96e' }}>Davetlisiniz</p>
-            <p className="text-2xl sm:text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: '#6b8f71' }}>Hazal &amp; Oğuz</p>
-            <div className="w-12 h-px bg-[#c9a96e]/40 my-2" />
-            <p className="text-[8px] sm:text-[10px] tracking-[0.15em] uppercase" style={{ color: '#7a6b5d' }}>05 / 09 / 2026</p>
-          </div>
-        </div>
-
-        {/* Click hint */}
         {!opening && (
-          <p className="text-center mt-8 text-sm animate-pulse" style={{ color: 'rgba(201,169,110,0.6)' }}>
-            Tıklayarak açın
+          <p
+            className="text-center mt-5 text-sm animate-pulse"
+            style={{ color: 'rgba(201,169,110,0.65)', letterSpacing: '0.14em' }}
+          >
+            ✦&nbsp;&nbsp;Tıklayarak açın&nbsp;&nbsp;✦
           </p>
         )}
       </div>
