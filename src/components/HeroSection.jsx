@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import CountdownTimer from './CountdownTimer'
 import MusicPlayer from './MusicPlayer'
 import { Draggable, DEFAULT_POSITIONS } from './Draggable'
@@ -7,6 +7,8 @@ import { supabase } from '../lib/supabase'
 export default function HeroSection() {
   const [editing, setEditing] = useState(false)
   const [positions, setPositions] = useState(DEFAULT_POSITIONS)
+  const musicRef = useRef(null)
+  const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true'
 
   useEffect(() => {
     async function load() {
@@ -14,6 +16,13 @@ export default function HeroSection() {
       if (data?.positions) setPositions(data.positions)
     }
     load()
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      musicRef.current?.play()
+    }, 800)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleSave = useCallback(async () => {
@@ -40,38 +49,40 @@ export default function HeroSection() {
       <div className="absolute top-20 left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl animate-blob" style={{ borderRadius: '50% 50% 50% 50%/60% 60% 40% 40%' }} />
       <div className="absolute bottom-32 right-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s', borderRadius: '60% 40% 50% 50%/50% 60% 40% 50%' }} />
 
-      {/* Settings button - absolute inside hero */}
-      <div className="absolute top-4 right-4 z-50 flex gap-2">
-        {!editing ? (
-          <button onClick={() => setEditing(true)}
-            className="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-white/70 hover:text-white hover:bg-gray-700"
-            aria-label="Ayarlar">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-            </svg>
-          </button>
-        ) : (
-          <>
-            <button onClick={handleSave}
-              className="px-4 py-2 rounded-xl bg-gray-800 text-white text-sm font-medium hover:bg-gray-700 shadow-lg">
-              Kaydet
+      {/* Settings button - only visible with ?admin=true */}
+      {isAdmin && (
+        <div className="absolute top-4 right-4 z-50 flex gap-2">
+          {!editing ? (
+            <button onClick={() => setEditing(true)}
+              className="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-white/70 hover:text-white hover:bg-gray-700"
+              aria-label="Ayarlar">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+              </svg>
             </button>
-            <button onClick={handleReset}
-              className="px-4 py-2 rounded-xl bg-red-700 text-white text-sm font-medium hover:bg-red-600 shadow-lg">
-              Sifirla
-            </button>
-            <button onClick={() => setEditing(false)}
-              className="px-4 py-2 rounded-xl bg-gray-800 text-white/80 text-sm font-medium hover:bg-gray-700">
-              Iptal
-            </button>
-          </>
-        )}
-      </div>
+          ) : (
+            <>
+              <button onClick={handleSave}
+                className="px-4 py-2 rounded-xl bg-gray-800 text-white text-sm font-medium hover:bg-gray-700 shadow-lg">
+                Kaydet
+              </button>
+              <button onClick={handleReset}
+                className="px-4 py-2 rounded-xl bg-red-700 text-white text-sm font-medium hover:bg-red-600 shadow-lg">
+                Sifirla
+              </button>
+              <button onClick={() => setEditing(false)}
+                className="px-4 py-2 rounded-xl bg-gray-800 text-white/80 text-sm font-medium hover:bg-gray-700">
+                Iptal
+              </button>
+            </>
+          )}
+        </div>
+      )}
 
       {/* Music player - absolute inside hero */}
       <div className="absolute top-4 left-4 z-50">
-        <MusicPlayer />
+        <MusicPlayer ref={musicRef} />
       </div>
 
       {/* Draggable content */}

@@ -1,8 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-export default function MusicPlayer() {
+const MusicPlayer = forwardRef(function MusicPlayer(_, ref) {
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef(null)
+
+  useImperativeHandle(ref, () => ({
+    play() {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play().catch(() => {})
+        setIsPlaying(true)
+      }
+    }
+  }))
 
   useEffect(() => {
     audioRef.current = new Audio('/music.mp3')
@@ -38,4 +47,6 @@ export default function MusicPlayer() {
       )}
     </button>
   )
-}
+})
+
+export default MusicPlayer
