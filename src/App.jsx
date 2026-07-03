@@ -22,9 +22,9 @@ function InvitationPage() {
       <HeroSection />
 
       <div className="py-8 sm:py-12" />
-      <DetailsPage />
-      <div className="py-8 sm:py-12" />
       <NikahSection />
+      <div className="py-8 sm:py-12" />
+      <DetailsPage />
       <div className="py-8 sm:py-12" />
       <RsvpSection />
       <div className="py-8 sm:py-12" />
