@@ -1,24 +1,16 @@
-import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import { useState, useEffect } from 'react'
 
-const MusicPlayer = forwardRef(function MusicPlayer(_, ref) {
+export default function MusicPlayer({ audioRef }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const audioRef = useRef(null)
-
-  useImperativeHandle(ref, () => ({
-    play() {
-      if (audioRef.current && !isPlaying) {
-        audioRef.current.play().catch(() => {})
-        setIsPlaying(true)
-      }
-    }
-  }))
 
   useEffect(() => {
-    audioRef.current = new Audio('/music.mp3')
-    audioRef.current.loop = true
-    audioRef.current.preload = 'auto'
-    return () => { audioRef.current?.pause() }
-  }, [])
+    const checkInterval = setInterval(() => {
+      if (audioRef.current) {
+        setIsPlaying(!audioRef.current.paused)
+      }
+    }, 500)
+    return () => clearInterval(checkInterval)
+  }, [audioRef])
 
   const togglePlay = () => {
     if (!audioRef.current) return
@@ -47,6 +39,4 @@ const MusicPlayer = forwardRef(function MusicPlayer(_, ref) {
       )}
     </button>
   )
-})
-
-export default MusicPlayer
+}

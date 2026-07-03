@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HeroSection from './components/HeroSection'
 import DetailsPage from './components/DetailsPage'
@@ -12,14 +12,25 @@ import AdminDashboard from './components/AdminDashboard'
 
 function InvitationPage() {
   const [envelopeDone, setEnvelopeDone] = useState(false)
+  const audioRef = useRef(null)
+
+  const handleEnvelopeClick = useCallback(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('/music.mp3')
+      audioRef.current.loop = true
+      audioRef.current.preload = 'auto'
+    }
+    audioRef.current.play().catch(() => {})
+    setTimeout(() => setEnvelopeDone(true), 3100)
+  }, [])
 
   return (
     <div className="min-h-screen relative bg-cream overflow-x-hidden">
-      {!envelopeDone && <EnvelopeIntro onOpen={() => setEnvelopeDone(true)} />}
+      {!envelopeDone && <EnvelopeIntro onOpen={handleEnvelopeClick} />}
 
       <FallingLeaves />
 
-      <HeroSection />
+      <HeroSection audioRef={audioRef} />
 
       <div className="py-8 sm:py-12" />
       <NikahSection />

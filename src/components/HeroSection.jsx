@@ -1,13 +1,12 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import CountdownTimer from './CountdownTimer'
 import MusicPlayer from './MusicPlayer'
 import { Draggable, DEFAULT_POSITIONS } from './Draggable'
 import { supabase } from '../lib/supabase'
 
-export default function HeroSection() {
+export default function HeroSection({ audioRef }) {
   const [editing, setEditing] = useState(false)
   const [positions, setPositions] = useState(DEFAULT_POSITIONS)
-  const musicRef = useRef(null)
   const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true'
 
   useEffect(() => {
@@ -16,13 +15,6 @@ export default function HeroSection() {
       if (data?.positions) setPositions(data.positions)
     }
     load()
-  }, [])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      musicRef.current?.play()
-    }, 800)
-    return () => clearTimeout(timer)
   }, [])
 
   const handleSave = useCallback(async () => {
@@ -82,7 +74,7 @@ export default function HeroSection() {
 
       {/* Music player - absolute inside hero */}
       <div className="absolute top-4 left-4 z-50">
-        <MusicPlayer ref={musicRef} />
+        <MusicPlayer audioRef={audioRef} />
       </div>
 
       {/* Draggable content */}
