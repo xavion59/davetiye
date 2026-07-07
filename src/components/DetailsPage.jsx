@@ -3,7 +3,7 @@ export default function DetailsPage() {
     <section style={{ width: '100%', minHeight: '85vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '64px 16px', boxSizing: 'border-box' }}>
       <div style={{ width: '100%', maxWidth: '600px', border: '5px solid #6b8f71', borderRadius: '24px', padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.6)', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', boxSizing: 'border-box' }}>
         <h2 style={{ fontFamily: 'var(--font-alex)', textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 2.8rem)', color: '#6b8f71', marginBottom: '36px' }}>
-          Düğün Detayları
+          Düğün
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

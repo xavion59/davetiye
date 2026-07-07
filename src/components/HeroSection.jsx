@@ -105,7 +105,7 @@ export default function HeroSection({ audioRef }) {
         </Draggable>
 
         <Draggable id="message" positions={positions} setPositions={setPositions} editing={editing}>
-          <p className="text-xl sm:text-2xl md:text-3xl text-gold max-w-md leading-relaxed drop-shadow-lg text-center"
+          <p className="text-2xl sm:text-3xl md:text-4xl text-gold max-w-lg leading-relaxed drop-shadow-lg text-center"
             style={{ fontFamily: "'Lucida Calligraphy', 'Segoe Script', 'Apple Chancery', cursive" }}>
             Bu güzel günde sevincimize ortak olmanız bizi çok mutlu eder.
           </p>
