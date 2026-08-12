@@ -197,7 +197,9 @@ export default function AdminDashboard() {
   }
 
   const totalGuests = rsvps.reduce((sum, r) => sum + (r.guests || 0), 0)
-  const attending = rsvps.filter(r => r.status === 'katilacagim').length
+  const attending = rsvps
+    .filter(r => r.status === 'katilacagim')
+    .reduce((sum, r) => sum + (r.guests || 0), 0)
 
   if (!user) {
     return (
