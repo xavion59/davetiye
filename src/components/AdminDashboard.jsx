@@ -20,6 +20,9 @@ export default function AdminDashboard() {
   const [rsvps, setRsvps] = useState([])
   const [rsvpsLoading, setRsvpsLoading] = useState(false)
 
+  const [settings, setSettings] = useState({ showNikah: true })
+  const [settingsLoading, setSettingsLoading] = useState(false)
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) setUser(session.user)
@@ -81,10 +84,43 @@ export default function AdminDashboard() {
     }
   }
 
+  const loadSettings = async () => {
+    setSettingsLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('settings')
+        .eq('id', 1)
+        .single()
+      if (error) throw error
+      setSettings(data?.settings || { showNikah: true })
+    } catch (err) {
+      alert('Ayarlar yüklenirken hata: ' + err.message)
+    } finally {
+      setSettingsLoading(false)
+    }
+  }
+
+  const saveSettings = async (newSettings) => {
+    setSettingsLoading(true)
+    try {
+      const { error } = await supabase
+        .from('site_settings')
+        .upsert({ id: 1, settings: newSettings })
+      if (error) throw error
+      setSettings(newSettings)
+    } catch (err) {
+      alert('Ayarlar kaydedilirken hata: ' + err.message)
+    } finally {
+      setSettingsLoading(false)
+    }
+  }
+
   useEffect(() => {
     if (user) {
       loadPhotos()
       loadRsvps()
+      loadSettings()
     }
   }, [user, sortBy])
 
@@ -291,6 +327,22 @@ export default function AdminDashboard() {
               {rsvps.length}
             </span>
           </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            style={{
+              padding: '12px 24px', borderRadius: '14px', border: 'none', fontSize: '14px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s',
+              backgroundColor: activeTab === 'settings' ? '#6b8f71' : '#fff',
+              color: activeTab === 'settings' ? '#fff' : '#7a6b5d',
+              boxShadow: activeTab === 'settings' ? '0 4px 12px rgba(107,143,113,0.3)' : '0 1px 3px rgba(0,0,0,0.06)',
+              display: 'flex', alignItems: 'center', gap: '8px'
+            }}
+          >
+            <svg style={{ width: '18px', height: '18px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+            </svg>
+            Ayarlar
+          </button>
         </div>
 
         {/* Photos Tab */}
@@ -470,6 +522,61 @@ export default function AdminDashboard() {
                     </button>
                   </div>
                 ))}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Settings Tab */}
+        {activeTab === 'settings' && (
+          <>
+            {settingsLoading ? (
+              <div style={{ textAlign: 'center', padding: '60px 0', color: '#9a8e80' }}>Yükleniyor...</div>
+            ) : (
+              <div style={{ backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #e8e2d8', padding: '28px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px' }}>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '14px', backgroundColor: '#f0f5f1', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg style={{ width: '24px', height: '24px', color: '#6b8f71' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#3d3425', margin: '0 0 2px' }}>Site Ayarları</h3>
+                    <p style={{ fontSize: '13px', color: '#9a8e80', margin: 0 }}>Bölümleri buradan gösterip gizleyebilirsin</p>
+                  </div>
+                </div>
+
+                <div style={{ border: '1px solid #e8e2d8', borderRadius: '14px', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', backgroundColor: '#faf8f4' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
+                    <div style={{ width: '44px', height: '44px', borderRadius: '12px', backgroundColor: '#faf3e6', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg style={{ width: '22px', height: '22px', color: '#c9a96e' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
+                        <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
+                        <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2" />
+                      </svg>
+                    </div>
+                    <div style={{ minWidth: 0 }}>
+                      <p style={{ fontWeight: '600', fontSize: '15px', color: '#3d3425', margin: '0 0 2px' }}>Nikah Bölümü</p>
+                      <p style={{ fontSize: '12px', color: '#9a8e80', margin: 0 }}>
+                        {settings.showNikah ? 'Sitede görünüyor' : 'Sitede gizli'}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => saveSettings({ ...settings, showNikah: !settings.showNikah })}
+                    style={{
+                      width: '52px', height: '30px', borderRadius: '15px', border: 'none', cursor: 'pointer', position: 'relative', transition: 'all 0.3s', flexShrink: 0,
+                      backgroundColor: settings.showNikah ? '#6b8f71' : '#d4cfc6'
+                    }}
+                    aria-label={settings.showNikah ? 'Nikah bölümünü gizle' : 'Nikah bölümünü göster'}
+                  >
+                    <span style={{
+                      position: 'absolute', top: '3px', width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.2)', transition: 'all 0.3s',
+                      left: settings.showNikah ? '25px' : '3px'
+                    }} />
+                  </button>
+                </div>
               </div>
             )}
           </>

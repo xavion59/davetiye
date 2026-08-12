@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HeroSection from './components/HeroSection'
 import DetailsPage from './components/DetailsPage'
@@ -9,10 +9,26 @@ import ContactSection from './components/ContactSection'
 import FallingLeaves from './components/FallingLeaves'
 import EnvelopeIntro from './components/EnvelopeIntro'
 import AdminDashboard from './components/AdminDashboard'
+import { supabase } from './lib/supabase'
 
 function InvitationPage() {
   const [envelopeDone, setEnvelopeDone] = useState(false)
+  const [showNikah, setShowNikah] = useState(true)
   const audioRef = useRef(null)
+
+  useEffect(() => {
+    supabase
+      .from('site_settings')
+      .select('settings')
+      .eq('id', 1)
+      .single()
+      .then(({ data }) => {
+        if (data?.settings && typeof data.settings.showNikah === 'boolean') {
+          setShowNikah(data.settings.showNikah)
+        }
+      })
+      .catch(() => {})
+  }, [])
 
   const handleEnvelopeClick = useCallback(() => {
     if (!audioRef.current) {
@@ -33,8 +49,8 @@ function InvitationPage() {
       <HeroSection audioRef={audioRef} />
 
       <div className="py-8 sm:py-12" />
-      <NikahSection />
-      <div className="py-8 sm:py-12" />
+      {showNikah && <NikahSection />}
+      {showNikah && <div className="py-8 sm:py-12" />}
       <DetailsPage />
       <div className="py-8 sm:py-12" />
       <RsvpSection />
