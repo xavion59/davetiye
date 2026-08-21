@@ -504,10 +504,10 @@ export default function AdminDashboard() {
                             {statusLabel(r.status)}
                           </span>
                         </div>
-                        <p style={{ fontSize: '13px', color: '#3d3425', fontWeight: '500', margin: 0 }}>
-                          {r.guests} kişi{r.note && <span style={{ color: '#7a6b5d', fontWeight: '400' }}> — "{r.note}"</span>}
+                        <p style={{ fontSize: '13px', color: '#1a1a1a', fontWeight: '600', margin: 0 }}>
+                          {r.guests} kişi{r.note && <span style={{ color: '#333333', fontWeight: '500' }}> — "{r.note}"</span>}
                         </p>
-                        <p style={{ fontSize: '12px', color: '#7a6b5d', fontWeight: '500', margin: '2px 0 0' }}>
+                        <p style={{ fontSize: '12px', color: '#333333', fontWeight: '500', margin: '2px 0 0' }}>
                           {new Date(r.created_at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>
